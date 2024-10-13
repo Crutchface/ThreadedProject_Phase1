@@ -1,0 +1,16 @@
+<form action="/agentedit/<%= agent.id %>" method="post">
+    <label for="">First Name</label>
+   <input type="text" name="firstname" value="<%= agent.AgtFirstName %>"><br>
+
+   <label for="">Last Name</label>
+   <input type="text" name="lastname" value="<%= agent.AgtLastName %>"><br>
+
+   <label for="">Email</label>
+   <input type="text" name="email" value="<%= agent.AgtEmail %>"><br>
+
+
+
+
+
+    <button  type="submit">Update user</button>
+</form>

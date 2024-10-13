@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <% packages.forEach(package => { %>
+        <h2><%= package.PkgName %> </h2>
+        <h4><%= package.PkgStartDate %> - <%= package.PkgEndDate %> </h4>
+        <p><%= package.PkgDesc %></p>
+        <p><%= package.PkgBasePrice %></p>
+        <p><%= package.PackageID %></p>
+        <form action="packages/<%= package.PackageID %>" method="post">
+            <input type="submit" value="Order This Package" />
+        </form>
+        <br>
+    <% }) %>
+</body>
+</html>

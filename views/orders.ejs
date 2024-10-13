@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+   
+    <form class="packageOrder" action="/order" method="post">
+        <h1 name="<% packageOrder.PackageID %>"><%= packageOrder.PkgName %></h1>
+        <div class="inputDiv"><label for="CustFirstName">First Name: </label>
+            <input type="text" name="CustFirstName" id="CustFirstName">
+        <br></div>
+        <div class="inputDiv"><label for="CustLastName">Last Name: </label>
+            <input type="text" name="CustLastName" id="CustLastName">
+        <br></div>
+        <div class="inputDiv"><label for="CustAddress">Address: </label>
+            <input type="text" name="CustAddress" id="CustAddress" >
+        <br></div>
+        <div class="inputDiv"><label for="CustCity">City: </label>
+            <input type="text" name="CustCity" id="CustCity">
+        <br></div>
+        <div class="inputDiv"><label for="CustProv">Province: </label>
+            <input type="text" name="CustProv" id="CustProv">
+        <br></div>
+        <div class="inputDiv"><label for="CustPostal">Postal Code</label>
+            <input type="text" name="CustPostal" id="CustPostal">
+        <br></div>
+        <div class="inputDiv"><label for="CustCountry">Country</label>
+            <input type="text" name="CustCountry" id="CustCountry"></textarea>
+        <br></div>
+        <div class="inputDiv"><label for="CustHomePhone">Home CustHomePhone</label>
+            <input type="text" name="CustHomePhone" id="CustHomePhone"></textarea>
+        <br></div>
+        <div class="inputDiv"><label for="CustBusPhone">Business Phone</label>
+            <input type="text" name="CustBusPhone" id="CustBusPhone"></textarea>
+        <br></div>
+        <div class="inputDiv"><label for="CustEmail">Email</label>
+            <input type="text" name="CustEmail" id="CustEmail"></textarea>
+        <br></div>
+        <div class="inputDiv"><label for="AgentId">Agent Id</label>
+            <input type="text" name="AgentID" id="AgentId"></textarea>
+        <br></div>
+        <label for="TravellerCount">Number of Travellers</label>
+        <input type="number" id="TravellerCount" name="TravellerCount" min="1" max="5">
+        <br></div>
+        <label for="agent">Select Your Agent</label>
+        <select name="agent" id="agent">
+            <% agents.forEach(agent => { %>
+                <option value="<%= agent.AgtFirstName %><%= agent.AgtLastName %>"><%= agent.AgtFirstName %> <%= agent.AgtLastName %></option>
+            <% }) %>
+          </select>
+          <br>
+        <button class="inputDiv" type="submit">Place Order</button>
+        
+    </form>
+</body>
+</html>
