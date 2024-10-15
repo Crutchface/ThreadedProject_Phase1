@@ -6,8 +6,8 @@
     <title>Document</title>
 </head>
 <body>
-   
-    <form class="packageOrder" action="/order" method="post">
+    
+    <form class="packageOrder" action="/packageOrder" method="post">
         <h1 name="<% packageOrder.PackageID %>"><%= packageOrder.PkgName %></h1>
         <div class="inputDiv"><label for="CustFirstName">First Name: </label>
             <input type="text" name="CustFirstName" id="CustFirstName">
@@ -31,26 +31,35 @@
             <input type="text" name="CustCountry" id="CustCountry"></textarea>
         <br></div>
         <div class="inputDiv"><label for="CustHomePhone">Home CustHomePhone</label>
-            <input type="text" name="CustHomePhone" id="CustHomePhone"></textarea>
+            <input type="text" name="CustHomePhone" id="CustHomePhone"></input>
         <br></div>
         <div class="inputDiv"><label for="CustBusPhone">Business Phone</label>
-            <input type="text" name="CustBusPhone" id="CustBusPhone"></textarea>
+            <input type="text" name="CustBusPhone" id="CustBusPhone"></input>
         <br></div>
         <div class="inputDiv"><label for="CustEmail">Email</label>
-            <input type="text" name="CustEmail" id="CustEmail"></textarea>
+            <input type="text" name="CustEmail" id="CustEmail"></input>
         <br></div>
-        <div class="inputDiv"><label for="AgentId">Agent Id</label>
-            <input type="text" name="AgentID" id="AgentId"></textarea>
+        
+        <label for="TravelerCount">Number of Travellers</label>
+        <input type="number" id="TravelerCount" name="TravelerCount" min="1" max="5">
         <br></div>
-        <label for="TravellerCount">Number of Travellers</label>
-        <input type="number" id="TravellerCount" name="TravellerCount" min="1" max="5">
-        <br></div>
-        <label for="agent">Select Your Agent</label>
-        <select name="agent" id="agent">
+        <label for="AgentId">Select Your Agent</label>
+        <select name="AgentId" id="AgentId">
             <% agents.forEach(agent => { %>
-                <option value="<%= agent.AgtFirstName %><%= agent.AgtLastName %>"><%= agent.AgtFirstName %> <%= agent.AgtLastName %></option>
+                <option value="<%= agent.AgentId %>"><%= agent.AgtFirstName %> <%= agent.AgtLastName %></option>
             <% }) %>
           </select>
+          <br>
+          <label for="TripTypeId">Select Your Trip Type</label>
+          <select name="TripTypeId" id="TripTypeId">
+              <% tripTypes.forEach(type => { %>
+                  <option value="<%= type.TripTypeId %>"><%= type.TTName %> </option>
+              <% }) %>
+            </select>
+            
+          
+        
+
           <br>
         <button class="inputDiv" type="submit">Place Order</button>
         

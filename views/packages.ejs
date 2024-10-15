@@ -11,9 +11,11 @@
         <h4><%= package.PkgStartDate %> - <%= package.PkgEndDate %> </h4>
         <p><%= package.PkgDesc %></p>
         <p><%= package.PkgBasePrice %></p>
-        <p><%= package.PackageID %></p>
-        <form action="packages/<%= package.PackageID %>" method="post">
+        <form action="order/<%= package.PackageID %>" method="post">
             <input type="submit" value="Order This Package" />
+        </form>
+        <form action="reviewPackage/<%= package.PackageID %>" method="post">
+            <input type="submit" value="Review This Package" />
         </form>
         <br>
     <% }) %>

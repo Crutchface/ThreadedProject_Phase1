@@ -1,3 +1,18 @@
+function makeBookingNo(length) {
+    let result = '';
+    const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+    const charactersLength = characters.length;
+    let counter = 0;
+    while (counter < length) {
+      result += characters.charAt(Math.floor(Math.random() * charactersLength));
+      counter += 1;
+    }
+    return result;
+}
+
+
+
+
 
 // ======================================================
 // Calls in our npm modules 
@@ -29,8 +44,9 @@ sequelize.sync({force:false})
 const Agency = require('./models/agency');
 const Bookings = require('./models/bookings');
 const Agents = require('./models/agents');
+const Customers = require('./models/customers');
 const Packages = require('./models/packages');
-
+const TripTypes = require('./models/triptypes');
 // =======================================================
 // Sets our Root Directory
 // =======================================================
@@ -107,31 +123,82 @@ app.get('/packages', async (req, res)=>{
     const packages = await Packages.findAll();
     res.render('packages', {packages : packages})
 });
-// Post event to pass package information to oder form
-app.post('/packages/:id', async (req, res)=>{
-    // const packageOrder = req.params.id;
-    // console.log(packageOrder);
-    const packageOrder = await Packages.findByPk(req.params.id);
-    console.log(packageOrder)
-    const agents = await Agents.findAll();
-    res.render('orders', {packageOrder : packageOrder, agents : agents })
-})
+
 
 /**=======================
  * !      Orders Endpoints
  *========================**/
 
-app.get('orders', async (req, res)=>{
-    console.log(req.params.id)
-    const package = await Packages.findByPk(req.params.id);
-    console.log(package)
-    res.render('orders', {package :package})
+// Post event to pass package information to order form
+app.post('/order/:id', async (req, res)=>{
+   
+    const packageOrder = await Packages.findByPk(req.params.id);
+    // console.log(packageOrder)
+    const agents = await Agents.findAll();
+    const tripTypes = await TripTypes.findAll();
+    // console.log(tripTypes)
+    res.render('orders', {packageOrder : packageOrder, agents : agents, tripTypes: tripTypes})
+});
+
+app.post('/packageOrder', async (req, res)=>{
+    console.log(req.body);
+    // ADD TO DATABASE HERE 
+    const { CustFirstName, CustLastName, CustAddress, CustCity, CustProv,CustPostal,CustCountry,CustHomePhone,CustBusPhone,CustEmail,AgentId,TravelerCount, TripTypeId  } = req.body;
+    await Customers.create({CustFirstName, CustLastName, CustAddress, CustCity, CustProv,CustPostal,CustCountry,CustHomePhone,CustBusPhone,CustEmail,AgentId});
+    // GETS JUST ADDED ID NUMBER
+    let nextCustomerId = 1;
+    try {
+        // Fetch the last CustomerId
+        const lastRecord = await Customers.findAll({
+            // Order by CustomerId in descending order
+            order: [['CustomerId', 'DESC']], 
+            limit: 1,
+            // Select only the CustomerId column
+            attributes: ['CustomerId'] // Select only the CustomerId column
+        });
+
+       if (lastRecord.length > 0) {
+             // Increment the last CustomerId by 1
+            nextCustomerId = lastRecord[0].CustomerId ; 
+        }
+      
+    } catch (error) {
+        console.error('Error processing order:', error);
+        res.status(500).json({ error: 'Internal Server Error' }); // Handle error gracefully
+    }
+    console.log(req.body)
+    const BookingDate =  new Date();
+    const BookingNo = makeBookingNo(6);
+    const CustomerId = nextCustomerId
+   
+    console.log({ BookingDate, BookingNo, TravelerCount, CustomerId, TripTypeId})
+    await Bookings.create({
+        BookingDate,
+        BookingNo,
+        TravelerCount,
+        CustomerId,
+        TripTypeId
+    });  
+   
+    res.redirect('packages');
 })
 
-// Orders post
 
 
+/**=======================
+ * !      Review Endpoints
+ *========================**/
 
+app.post('/reviewPackage/:id', async (req, res)=>{
+    const package = await Packages.findByPk(req.params.id);
+    res.render('reviewPackage', {package : package })
+});
+app.post('/reviewSubmit', (req,res)=>{
+    const packageID = Object.keys(req.body)[0];
+    console.log(packageID);
+    console.log(req.body);
+    res.redirect('packages');
+})
 
 
 /**=======================

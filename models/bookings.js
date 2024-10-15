@@ -9,10 +9,11 @@ const Bookings = sequelize.define('bookings', {
     BookingId:{
         type: DataTypes.INTEGER,
         allowNull: false,
+        autoIncrement: true,
         primaryKey: true
     },
     BookingDate:{
-        type: DataTypes.STRING,
+        type: DataTypes.DATE,
         allowNull: false
     },
     BookingNo:{
@@ -20,11 +21,11 @@ const Bookings = sequelize.define('bookings', {
         allowNull: false
     },
     TravelerCount:{
-        type: DataTypes.STRING,
+        type: DataTypes.DOUBLE,
         allowNull: false
     },
     CustomerId:{
-        type: DataTypes.STRING,
+        type: DataTypes.INTEGER,
         allowNull: false
     },
     TripTypeId:{
@@ -33,7 +34,7 @@ const Bookings = sequelize.define('bookings', {
     },
     PackageId:{
         type: DataTypes.STRING,
-        allowNull: false
+        allowNull: true
     }
     
 
