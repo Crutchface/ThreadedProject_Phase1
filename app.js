@@ -1,3 +1,8 @@
+// TODO : Form Validation 
+//        Change Method for Provinces
+//        Create table for review and program logic
+//          If Time : Move booking number feature to ext 
+
 function makeBookingNo(length) {
     let result = '';
     const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
