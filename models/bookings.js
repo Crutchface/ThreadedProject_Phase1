@@ -1,44 +1,46 @@
 // Import Datatypes
-const {DataTypes}= require('sequelize');
+const { DataTypes } = require("sequelize");
 
-// Import connection 
-const sequelize=require('../utils/database');
+// Import connection
+const sequelize = require("../utils/database");
 
 // creating the model
-const Bookings = sequelize.define('bookings', {
-    BookingId:{
-        type: DataTypes.INTEGER,
-        allowNull: false,
-        autoIncrement: true,
-        primaryKey: true
+const Bookings = sequelize.define(
+  "bookings",
+  {
+    BookingId: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      autoIncrement: true,
+      primaryKey: true,
     },
-    BookingDate:{
-        type: DataTypes.DATE,
-        allowNull: false
+    BookingDate: {
+      type: DataTypes.DATE,
+      allowNull: false,
     },
-    BookingNo:{
-        type: DataTypes.STRING,
-        allowNull: false
+    BookingNo: {
+      type: DataTypes.STRING,
+      allowNull: false,
     },
-    TravelerCount:{
-        type: DataTypes.DOUBLE,
-        allowNull: false
+    TravelerCount: {
+      type: DataTypes.DOUBLE,
+      allowNull: false,
     },
-    CustomerId:{
-        type: DataTypes.INTEGER,
-        allowNull: false
+    CustomerId: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
     },
-    TripTypeId:{
-        type: DataTypes.STRING,
-        allowNull: false
+    TripTypeId: {
+      type: DataTypes.STRING,
+      allowNull: false,
     },
-    PackageId:{
-        type: DataTypes.STRING,
-        allowNull: true
-    }
-    
-
-},{
-    timestamps: false
-});
+    PackageId: {
+      type: DataTypes.STRING,
+      allowNull: true,
+    },
+  },
+  {
+    timestamps: false,
+  }
+);
 module.exports = Bookings;
