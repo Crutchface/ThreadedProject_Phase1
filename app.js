@@ -1,7 +1,10 @@
 // TODO : Form Validation 
 //        Change Method for Provinces
 //        Create table for review and program logic
-//          If Time : Move booking number feature to ext 
+//        Make database logic for agents
+//        Make dates display as red if too old
+//        If Time : Move booking number feature to ext 
+//      
 
 function makeBookingNo(length) {
     let result = '';
