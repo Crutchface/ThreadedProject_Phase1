@@ -1,40 +1,96 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <form action="/reviewSubmit" method="post">
-        <h2><%= package.PkgName %> </h2>
-        <p><%= package.PkgDesc %></p>
-        <label for="firstName">First Name: </label>
-            <input type="text" name="<%= package.PackageID %>" id="firstName">
-        <br></div>
-        <label for="packageReviewDesc">Please write us a short review!</label>
-            <textarea type="text" name="packageReviewDesc" id="packageReviewDesc"></textarea>
-        <fieldset>
-            <legend>Please select your Rating. 5 being the highest</legend>
-            <div>
-              <input type="radio" id="rating1" name="rating" value="1"  />
-              <label for="rating1">1</label>
-        
-              <input type="radio" id="rating2" name="rating" value="2" />
-              <label for="rating2">2</label>
-        
-              <input type="radio" id="rating3" name="rating" value="3" />
-              <label for="rating3">3</label>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Review Packages</title>
+    <script type="text/javascript" src="/validate.js"></script>
+  </head>
+  <body>
+    <form id="form" action="/reviewSubmit" method="post">
+      <h2><%= package.PkgName %></h2>
+      <p><%= package.PkgDesc %></p>
+      <label for="firstName">First Name: </label>
+      <input type="text" name="firstname" id="firstName" />
+      <br />
+      <label for="lastname">Last Name: </label>
+      <input type="text" name="lastname" id="firstName" />
+      <br />
+      <label for="packageReviewDesc">Please write us a short review!</label>
+      <textarea
+        type="text"
+        name="packageReviewDesc"
+        id="packageReviewDesc"
+      ></textarea>
+      <fieldset>
+        <legend>Please select your Rating. 5 being the highest</legend>
+        <div>
+          <input type="radio" id="rating1" name="rating" value="1" />
+          <label for="rating1">1</label>
 
-              <input type="radio" id="rating4" name="rating" value="4" />
-              <label for="rating4">4</label>
+          <input type="radio" id="rating2" name="rating" value="2" />
+          <label for="rating2">2</label>
 
-              <input type="radio" id="rating5" name="rating" value="5" checked/>
-              <label for="rating5">5</label>
-            </div>
-            
-          </fieldset>
-        <input type="submit" value="Submit your review" />
+          <input type="radio" id="rating3" name="rating" value="3" />
+          <label for="rating3">3</label>
+
+          <input type="radio" id="rating4" name="rating" value="4" />
+          <label for="rating4">4</label>
+
+          <input type="radio" id="rating5" name="rating" value="5" checked />
+          <label for="rating5">5</label>
+        </div>
+      </fieldset>
+      <input type="submit" value="Submit your review" />
     </form>
-</body>
+    <script>
+      const form = document.getElementById("form");
+
+      // Validation and Submit
+      function Submit() {
+        let lastname = document.forms["form"]["lastname"].value;
+        if (!validateName(lastname)) {
+          return;
+        }
+
+        let firstname = document.forms["form"]["firstname"].value;
+        if (!validateName(firstname)) {
+          return;
+        }
+
+        let reviewDesc = document.forms["form"]["packageReviewDesc"].value;
+
+        let rate = document.forms["form"]["rating"].value;
+
+        let formData = {
+          lastname: lastname,
+          firstname: firstname,
+          packageReviewDesc: reviewDesc,
+          id: "<%= package.PackageID %>",
+          rate: rate,
+        };
+
+        // send the request
+        fetch(`/reviewSubmit`, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(formData),
+        })
+          .then((response) => {
+            console.log(response);
+          })
+          .catch((error) => {
+            console.log("Error:", error);
+          });
+      }
+
+      // listen to the submit action
+      form.addEventListener("submit", (e) => {
+        e.preventDefault();
+        Submit();
+      });
+    </script>
+  </body>
 </html>
