@@ -50,7 +50,7 @@ const rootDir = path.dirname(require.main.filename);
 // =======================================================
 // Declares our static folders
 // =======================================================
-app.use(express.static(path.join(rootDir, "public")));
+app.use(express.static(path.join(rootDir, "asset")));
 app.use(express.static(path.join(rootDir, "views")));
 
 // =======================================================
@@ -139,7 +139,6 @@ app.post("/order/:id", async (req, res) => {
 });
 
 app.post("/packageOrder", async (req, res) => {
-  console.log(req.body);
   // ADD TO DATABASE HERE
   const {
     CustFirstName,

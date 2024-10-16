@@ -3,10 +3,11 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>AgentEdit</title>
+    <script type="text/javascript" src="/validate.js"></script>
   </head>
   <body>
-    <form action="/agentedit/<%= agent.id %>" method="post">
+    <form id="form" action="/agentedit/<%= agent.AgentId %>" method="post">
       <label for="">First Name</label>
       <input
         type="text"
@@ -22,10 +23,58 @@
       /><br />
       <label for="">Email</label>
       <input type="text" name="email" value="<%= agent.AgtEmail %>" /><br />
-      <button type="submit">Update user</button>
+      <button type="submit" id="submit">Update user</button>
     </form>
     <script>
-      
+      const form = document.getElementById("form");
+
+      // Validation and Submit
+      function Submit() {
+        // Name Regex
+        const NAME_REGEX = /^[a-zA-Z]+$/;
+
+        let lastname = document.forms["form"]["lastname"].value;
+        if (!validateName(lastname)) {
+          return;
+        }
+
+        let firstname = document.forms["form"]["firstname"].value;
+        if (!validateName(firstname)) {
+          return;
+        }
+
+        let email = document.forms["form"]["email"].value;
+        if (!validateEmail(email)) {
+          return;
+        }
+
+        const formData = {
+          firstname: firstname,
+          lastname: lastname,
+          email: email,
+        };
+
+        // send the request
+        fetch(`/agentedit/${"<%= agent.AgentId %>"}`, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(formData),
+        })
+          .then((response) => {
+            console.log(response);
+          })
+          .catch((error) => {
+            console.log("Error:", error);
+          });
+      }
+
+      // listen to the submit action
+      form.addEventListener("submit", (e) => {
+        e.preventDefault();
+        Submit();
+      });
     </script>
   </body>
 </html>
