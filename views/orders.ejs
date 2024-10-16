@@ -134,9 +134,9 @@
         }
 
         let address = document.forms["form"]["CustAddress"].value;
-        if (!validateAddress(address)) {
-          return;
-        }
+        // if (!validateAddress(address)) {
+        //   return;
+        // }
 
         let email = document.forms["form"]["CustEmail"].value;
         if (!validateEmail(email)) {
@@ -175,7 +175,7 @@
         let TravelerCount = document.forms["form"]["TravelerCount"].value;
         let AgentId = document.forms["form"]["AgentId"].value;
         let TripTypeId = document.forms["form"]["TripTypeId"].value;
-
+        let PackageId = "<%= packageOrder.PackageID %>"
         const formData = {
           CustFirstName: firstname,
           CustLastName: lastname,
@@ -190,22 +190,24 @@
           TravelerCount: TravelerCount,
           AgentId: AgentId,
           TripTypeId: TripTypeId,
+          PackageId :PackageId
         };
-        console.log(formData);
+
         // send the request
-        // fetch(`/packageOrder`, {
-        //   method: "POST",
-        //   headers: {
-        //     "Content-Type": "application/json",
-        //   },
-        //   body: JSON.stringify(formData),
-        // })
-        //   .then((response) => {
-        //     console.log(response);
-        //   })
-        //   .catch((error) => {
-        //     console.log("Error:", error);
-        //   });
+        fetch(`/packageOrder`, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(formData),
+        })
+          .then((response) => {
+            window.location.href = "/packages"
+            console.log(response);
+          })
+          .catch((error) => {
+            console.log("Error:", error);
+          });
       }
 
       // listen to the submit action

@@ -1,6 +1,6 @@
 // TODO : 
 //        
-//        Create table for reviews and program logic
+//        Create table for review and program logic
 //        Make database logic for agents
 //        Make dates display as red if too old
 //        If Time : Move booking number feature to ext 
@@ -70,6 +70,7 @@ app.set("view engine", "ejs");
 // Allows parsing more info from our html
 // =======================================================
 app.use(express.urlencoded({ extended: true }));
+app.use(express.json())
 
 //=========================================================
 // endpoints
@@ -100,14 +101,18 @@ app.get("/agentedit/:id", async (req, res) => {
   const agent = await Agents.findByPk(req.params.id);
   res.render("agentedit", { agent });
 });
+
 //  Post for the update
-app.post("/editagent/:id", async (req, res) => {
+app.post("/agentedit", async (req, res) => {
   // const {firstname, lastname, email, phone, city,postal,message } = req.body;
+  console.log(req.body);
+  const {AgentId, AgtFirstName, AgtMiddleInitial, AgtLastName, AgtBusPhone, AgtEmail, AgtPosition, AgencyID}=req.body;
   await Agents.update(
-    { firstname, lastname, email, phone, city, postal, message },
+    { AgtFirstName, AgtMiddleInitial, AgtLastName, AgtBusPhone, AgtEmail, AgtPosition, AgencyID },
     {
-      where: { id: req.params.id },
+      where: { AgentId: AgentId },
     }
+    
   );
 
   res.redirect("/agents");
@@ -115,7 +120,7 @@ app.post("/editagent/:id", async (req, res) => {
 
 //  post for agent deletion
 app.get("/agentdelete/:id", async (req, res) => {
-  await Agent.destroy({ where: { id: req.params.id } });
+  await Agents.destroy({ where: { AgentId: req.params.id } });
   res.redirect("/agents");
 });
 
@@ -209,6 +214,7 @@ app.post("/packageOrder", async (req, res) => {
     TravelerCount,
     CustomerId,
     TripTypeId,
+    PackageId
   });
   await Bookings.create({
     BookingDate,
@@ -230,9 +236,10 @@ app.post("/reviewPackage/:id", async (req, res) => {
   const package = await Packages.findByPk(req.params.id);
   res.render("reviewPackage", { package: package });
 });
-app.post("/reviewSubmit", (req, res) => {
+app.post("/reviewSubmit/:id", (req, res) => {
 //   const packageID = Object.keys(req.body)[0];
 //   console.log(packageID);
+console.log("1111111111")
   console.log(req.body);
   res.redirect("packages");
 });

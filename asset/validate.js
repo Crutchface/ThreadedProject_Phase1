@@ -27,7 +27,7 @@ const provinces = [
   "Yukon",
 ];
 const NAME_REGEX = /^[a-zA-Z]+$/;
-const ADDRESS_REGEX = /^[0-9]+ [A-Za-z ]+(St|Ave|Rd|Blvd|Dr|Court|Way|Lane)$/;
+const ADDRESS_REGEX = /^[0-9]+ [A-Za-z ]+(St|Ave|Rd|Blvd|Dr|Court|Way|Lane|Street)$/;
 const EMAIL_REGEX = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
 const CITY_REGEX = /^[A-Za-z\s\-]+$/;
 const POSTALCODE_REGEX = /^[A-Za-z]\d[A-Za-z] ?\d[A-Za-z]\d$/;
