@@ -30,9 +30,6 @@
 
       // Validation and Submit
       function Submit() {
-        // Name Regex
-        const NAME_REGEX = /^[a-zA-Z]+$/;
-
         let lastname = document.forms["form"]["lastname"].value;
         if (!validateName(lastname)) {
           return;
