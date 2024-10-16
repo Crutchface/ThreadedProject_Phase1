@@ -1,33 +1,37 @@
-const {DataTypes} = require('sequelize')
+const { DataTypes } = require("sequelize");
 
-const sequelize = require('../utils/database')
+const sequelize = require("../utils/database");
 
-const Packages = sequelize.define('packages', {
-    PackageID:{
-        type: DataTypes.INTEGER,
-        allowNull: false,
-        primaryKey: true
+const Packages = sequelize.define(
+  "packages",
+  {
+    PackageID: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      primaryKey: true,
     },
-    PkgName:{
-        type: DataTypes.STRING,
+    PkgName: {
+      type: DataTypes.STRING,
     },
-    PkgStartDate:{
-        type: DataTypes.DATE,
+    PkgStartDate: {
+      type: DataTypes.DATE,
     },
-    PkgEndDate:{
-        type: DataTypes.DATE,
+    PkgEndDate: {
+      type: DataTypes.DATE,
     },
-    PkgDesc:{
-        type: DataTypes.STRING,
+    PkgDesc: {
+      type: DataTypes.STRING,
     },
-    PkgBasePrice:{
-        type: DataTypes.DECIMAL,
+    PkgBasePrice: {
+      type: DataTypes.DECIMAL,
     },
-    PkgAgencyCommission:{
-        type: DataTypes.DECIMAL
-    }
-},{
-    timestamps: false
-});
- 
-module.exports = Packages
+    PkgAgencyCommission: {
+      type: DataTypes.DECIMAL,
+    },
+  },
+  {
+    timestamps: false,
+  }
+);
+
+module.exports = Packages;

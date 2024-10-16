@@ -1,17 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AgentList</title>
+  </head>
+  <body>
     <h1>Edit Agents</h1>
     <% agents.forEach(agent => { %>
-     <li><%= agent.AgtFirstName %> <%= agent.AgtLastName %> 
-        <a href="/agentedit/<%= agent.AgentId %>" class="editbutton">Edit</a>
-        <a href="/agentdelete/<%= agent.AgentId %>" class="deletebutton">Delete</a>
+    <li>
+      <%= agent.AgtFirstName %> <%= agent.AgtLastName %>
+      <a href="/agentedit/<%= agent.AgentId %>" class="editbutton">Edit</a>
+      <a href="/agentdelete/<%= agent.AgentId %>" class="deletebutton"
+        >Delete</a
+      >
     </li>
     <% }) %>
-</body>
+  </body>
 </html>

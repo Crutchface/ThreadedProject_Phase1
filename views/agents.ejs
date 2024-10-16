@@ -1,22 +1,29 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-</head>
-<body>
+  </head>
+  <body>
+    <button onclick="editAgents()">Edit Agents</button>
     <% agency.forEach(location => { %>
-     <h1><%= location.AgncyCity %> <%= location.AgncyAddress %> <%= location.AgncyPhone %></h1>
-        <% agents.forEach(agent => { %>
-            <% if(agent.AgencyId === location.AgencyID){ %>
-                <li><%= agent.AgtFirstName %> <%= agent.AgtLastName %> <%= agent.AgtBusPhone %> <%= agent.AgtEmail %></li>
-            <% } %>
-        <% }) %>
-    <% }) %>
+    <h1>
+      <%= location.AgncyCity %> <%= location.AgncyAddress %> <%=
+      location.AgncyPhone %>
+    </h1>
+    <% agents.forEach(agent => { %> <% if(agent.AgencyId === location.AgencyID){
+    %>
+    <li>
+      <%= agent.AgtFirstName %> <%= agent.AgtLastName %> <%= agent.AgtBusPhone
+      %> <%= agent.AgtEmail %>
+    </li>
+    <% } %> <% }) %> <% }) %>
 
-    <form action="/editagents">
-        <input type="submit" value="Edit Agents" />
-    </form>
-</body>
+    <script>
+      function editAgents() {
+        window.location.href = "/editagents";
+      }
+    </script>
+  </body>
 </html>
