@@ -36,12 +36,25 @@
           <input type="text" name="CustCity" id="CustCity" />
         </div>
         <br />
-        <div class="inputDiv">
-          <label for="CustProv">Province: </label>
-          <input type="text" name="CustProv" id="CustProv" />
-        </div>
-        <br />
-        <div class="inputDiv">
+        <label for="CustProv" id="CustProv">Province: </label>
+        <select name ="CustProv">Province
+          <option value="AB">Alberta</option>
+          <option value="BC">British Columbia</option>
+          <option value="MB">Manitoba</option>
+          <option value="NB">New Brunswick</option>
+          <option value="NL">Newfoundland</option>
+          <option value="NS">Nova Scotia</option>
+          <option value="NT">Northwest Territories</option>
+          <option value="NU">Nunaut</option>
+          <option value="ON">Ontario</option>
+          <option value="PE">Prince Edward Island</option>
+          <option value="QC">Quebec</option>
+          <option value="SK">Saskatchewan</option>
+          <option value="YT">Yukon</option>
+      </select>
+      <br/>
+      <br/>
+              <div class="inputDiv">
           <label for="CustPostal">Postal Code</label>
           <input type="text" name="CustPostal" id="CustPostal" />
         </div>
@@ -86,13 +99,21 @@
           <% }) %>
         </select>
         <br />
+        <br />
         <label for="TripTypeId">Select Your Trip Type</label>
         <select name="TripTypeId" id="TripTypeId">
           <% tripTypes.forEach(type => { %>
           <option value="<%= type.TripTypeId %>"><%= type.TTName %></option>
           <% }) %>
         </select>
-        <br />
+        <br/>
+        <br/>
+        <label for="PackageId">Current Package</label>
+        <select name="PackageId" id="PackageId">
+          <option value="<%= packageOrder.PackageID %>"><%= packageOrder.PkgName %></option>
+        </select>
+        <br/>
+        <br/>
         <button class="inputDiv" type="submit">Place Order</button>
       </form>
     </div>

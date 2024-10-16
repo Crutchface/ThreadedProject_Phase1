@@ -1,7 +1,7 @@
 const Sequelize = require('sequelize');
 
 // Create connection credentials to db
-const sequelize=new Sequelize('travelexperts', 'root', '1q12w23e3=ilY', {
+const sequelize=new Sequelize('travelexperts', 'root', 'ninrez', {
     host: 'localhost',
     dialect: 'mysql'
 });

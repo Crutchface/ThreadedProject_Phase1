@@ -1,6 +1,6 @@
-// TODO : Form Validation 
-//        Change Method for Provinces
-//        Create table for review and program logic
+// TODO : 
+//        
+//        Create table for reviews and program logic
 //        Make database logic for agents
 //        Make dates display as red if too old
 //        If Time : Move booking number feature to ext 
@@ -101,9 +101,9 @@ app.get("/agentedit/:id", async (req, res) => {
   res.render("agentedit", { agent });
 });
 //  Post for the update
-app.post("/edit/:id", async (req, res) => {
+app.post("/editagent/:id", async (req, res) => {
   // const {firstname, lastname, email, phone, city,postal,message } = req.body;
-  await Agent.update(
+  await Agents.update(
     { firstname, lastname, email, phone, city, postal, message },
     {
       where: { id: req.params.id },
@@ -162,6 +162,7 @@ app.post("/packageOrder", async (req, res) => {
     AgentId,
     TravelerCount,
     TripTypeId,
+    PackageId
   } = req.body;
   await Customers.create({
     CustFirstName,
@@ -175,6 +176,7 @@ app.post("/packageOrder", async (req, res) => {
     CustBusPhone,
     CustEmail,
     AgentId,
+    
   });
   // GETS JUST ADDED ID NUMBER
   let nextCustomerId = 1;
@@ -214,6 +216,7 @@ app.post("/packageOrder", async (req, res) => {
     TravelerCount,
     CustomerId,
     TripTypeId,
+    PackageId
   });
 
   res.redirect("packages");
@@ -228,8 +231,8 @@ app.post("/reviewPackage/:id", async (req, res) => {
   res.render("reviewPackage", { package: package });
 });
 app.post("/reviewSubmit", (req, res) => {
-  const packageID = Object.keys(req.body)[0];
-  console.log(packageID);
+//   const packageID = Object.keys(req.body)[0];
+//   console.log(packageID);
   console.log(req.body);
   res.redirect("packages");
 });
