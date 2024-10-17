@@ -157,4 +157,10 @@ const validatePhone = (phone) => {
   return true;
 };
 
-
+const validateDesc = (desc) => {
+  if(desc == "") {
+    alert("description must be filled out");
+    return false;
+  }
+  return true;
+}
