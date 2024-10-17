@@ -33,24 +33,24 @@
         name="busphone"
         value="<%= agent.AgtBusPhone %>"
       /><br />
-      
+
       <label for="">Email</label>
       <input type="text" name="email" value="<%= agent.AgtEmail %>" /><br />
-     
+
       <label for="">Position</label>
-      <input
-        type="text"
-        name="position"
-        value="<%= agent.AgtPosition %>"
-      /><br />
+      <select name="position" id="position" value="<%= agent.AgtPosition %>">
+        <option>Senior Agent</option>
+        <option>Intermediate Agent</option>
+        <option>Junior Agent</option></select
+      ><br />
       <label for="">Location ID</label>
       <input
         type="text"
         name="location"
         value="<%= agent.AgencyId %>"
+        readonly
       /><br />
-      
-      
+
       <button type="submit" id="submit">Update user</button>
     </form>
     <script>
@@ -68,9 +68,9 @@
           return;
         }
         let middleinitial = document.forms["form"]["middleinitial"].value;
-        // if (!validateName(middleinitial)) {
-        //   return;
-        // }
+        if (!validateMiddleName(middleinitial)) {
+          return;
+        }
 
         let busphone = document.forms["form"]["busphone"].value;
         if (!validatePhone(busphone)) {
@@ -78,28 +78,23 @@
         }
 
         let position = document.forms["form"]["position"].value;
-        // if (!validateName(firstname)) {
-        //   return;
-        // }
+
         let email = document.forms["form"]["email"].value;
         if (!validateEmail(email)) {
           return;
         }
         let location = document.forms["form"]["location"].value;
-        // if (!validateName(location)) {
-        //   return;
-        // }
-        AgentId = "<%= agent.AgentId %>"
+
+        AgentId = "<%= agent.AgentId %>";
         const formData = {
-          AgentId : AgentId,
+          AgentId: AgentId,
           AgtFirstName: firstname,
-          AgtMiddleInitial : middleinitial,
+          AgtMiddleInitial: middleinitial,
           AgtLastName: lastname,
-          AgtBusPhone : busphone,
+          AgtBusPhone: busphone,
           AgtEmail: email,
-          AgtPosition : position,
-          AgencyID : location,
-          
+          AgtPosition: position,
+          AgencyID: location,
         };
 
         // send the request
@@ -111,8 +106,7 @@
           body: JSON.stringify(formData),
         })
           .then((response) => {
-             window.location.href = "/agents"
-            console.log(response);
+            window.location.href = "/agents";
           })
           .catch((error) => {
             console.log("Error:", error);

@@ -37,7 +37,8 @@
         </div>
         <br />
         <label for="CustProv" id="CustProv">Province: </label>
-        <select name ="CustProv">Province
+        <select name="CustProv">
+          Province
           <option value="AB">Alberta</option>
           <option value="BC">British Columbia</option>
           <option value="MB">Manitoba</option>
@@ -51,10 +52,10 @@
           <option value="QC">Quebec</option>
           <option value="SK">Saskatchewan</option>
           <option value="YT">Yukon</option>
-      </select>
-      <br/>
-      <br/>
-              <div class="inputDiv">
+        </select>
+        <br />
+        <br />
+        <div class="inputDiv">
           <label for="CustPostal">Postal Code</label>
           <input type="text" name="CustPostal" id="CustPostal" />
         </div>
@@ -106,14 +107,16 @@
           <option value="<%= type.TripTypeId %>"><%= type.TTName %></option>
           <% }) %>
         </select>
-        <br/>
-        <br/>
+        <br />
+        <br />
         <label for="PackageId">Current Package</label>
         <select name="PackageId" id="PackageId">
-          <option value="<%= packageOrder.PackageID %>"><%= packageOrder.PkgName %></option>
+          <option value="<%= packageOrder.PackageID %>">
+            <%= packageOrder.PkgName %>
+          </option>
         </select>
-        <br/>
-        <br/>
+        <br />
+        <br />
         <button class="inputDiv" type="submit">Place Order</button>
       </form>
     </div>
@@ -122,7 +125,6 @@
 
       // Validation and Submit
       function Submit() {
-
         let lastname = document.forms["form"]["CustLastName"].value;
         if (!validateName(lastname)) {
           return;
@@ -134,9 +136,9 @@
         }
 
         let address = document.forms["form"]["CustAddress"].value;
-        // if (!validateAddress(address)) {
-        //   return;
-        // }
+        if (!validateAddress(address)) {
+          return;
+        }
 
         let email = document.forms["form"]["CustEmail"].value;
         if (!validateEmail(email)) {
@@ -175,7 +177,7 @@
         let TravelerCount = document.forms["form"]["TravelerCount"].value;
         let AgentId = document.forms["form"]["AgentId"].value;
         let TripTypeId = document.forms["form"]["TripTypeId"].value;
-        let PackageId = "<%= packageOrder.PackageID %>"
+        let PackageId = "<%= packageOrder.PackageID %>";
         const formData = {
           CustFirstName: firstname,
           CustLastName: lastname,
@@ -190,7 +192,7 @@
           TravelerCount: TravelerCount,
           AgentId: AgentId,
           TripTypeId: TripTypeId,
-          PackageId :PackageId
+          PackageId: PackageId,
         };
 
         // send the request
@@ -202,7 +204,7 @@
           body: JSON.stringify(formData),
         })
           .then((response) => {
-            window.location.href = "/packages"
+            window.location.href = "/packages";
             console.log(response);
           })
           .catch((error) => {
