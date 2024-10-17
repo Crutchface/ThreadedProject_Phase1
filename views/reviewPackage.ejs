@@ -54,11 +54,14 @@
         }
 
         let firstname = document.forms["form"]["firstname"].value;
-        // if (!validateName(firstname)) {
-        //   return;
-        // }
+        if (!validateName(firstname)) {
+          return;
+        }
 
         let reviewDesc = document.forms["form"]["packageReviewDesc"].value;
+        if (!validateDesc(reviewDesc)) {
+          return;
+        }
 
         let rating = document.forms["form"]["rating"].value;
 
@@ -68,7 +71,6 @@
           reviewDescript: reviewDesc,
           reviewRating: rating,
           packageId: "<%= package.PackageID %>",
-
         };
 
         // send the request
@@ -80,7 +82,7 @@
           body: JSON.stringify(formData),
         })
           .then((response) => {
-            window.location.href = "/packages"
+            window.location.href = "/packages";
             console.log(response);
           })
           .catch((error) => {
