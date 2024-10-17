@@ -1,21 +1,14 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
-  </head>
-  <body>
+<%- include('header') %>
     <% packages.forEach(package => { %>
     <h2><%= package.PkgName %></h2>
     <h4><%= package.PkgStartDate %> - <%= package.PkgEndDate %></h4>
     <p><%= package.PkgDesc %></p>
     <p><%= package.PkgBasePrice %></p>
     <form action="order/<%= package.PackageID %>" method="post">
-      <input type="submit" value="Order This Package" />
+      <input class="button" type="submit" value="Order This Package" />
     </form>
     <form action="reviewPackage/<%= package.PackageID %>" method="post">
-      <input type="submit" value="Review This Package" />
+      <input class="button" type="submit" value="Review This Package" />
     </form>
     <br />
     <% }) %>
