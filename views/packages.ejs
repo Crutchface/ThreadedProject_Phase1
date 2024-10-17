@@ -7,9 +7,27 @@
   </head>
   <body>
     <% packages.forEach(package => { %>
-    <h2><%= package.PkgName %></h2>
-    <h4><%= package.PkgStartDate %> - <%= package.PkgEndDate %></h4>
-    <p><%= package.PkgDesc %></p>
+      <h2><%= package.PkgName %></h2>
+      <h4><%= package.PkgStartDate %> - <%= package.PkgEndDate %></h4>
+      <p><%= package.PkgDesc %></p>
+    
+      <% 
+        // Filter reviews for the current package
+        const filteredReviews = reviews.filter(review => package.PackageID === review.packageId && review.reviewRating === 5);
+        
+        // Select a random review from the filtered reviews
+        const randomReview = filteredReviews.length > 0 ? filteredReviews[Math.floor(Math.random() * filteredReviews.length)] : null;
+      %>
+    
+      <% if (randomReview) { %>
+        <p style="font-size: 16px; color: red;"><%= randomReview.reviewFirstName %> says <%= randomReview.reviewDescript %></p>
+      <% } else { %>
+        <p>No reviews available.</p>
+      <% } %>
+   
+  
+ 
+
     <p><%= package.PkgBasePrice %></p>
     <form action="order/<%= package.PackageID %>" method="post">
       <input type="submit" value="Order This Package" />

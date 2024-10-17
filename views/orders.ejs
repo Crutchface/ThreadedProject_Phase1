@@ -175,7 +175,7 @@
         let TravelerCount = document.forms["form"]["TravelerCount"].value;
         let AgentId = document.forms["form"]["AgentId"].value;
         let TripTypeId = document.forms["form"]["TripTypeId"].value;
-        let PackageId = "<%= packageOrder.PackageID %>"
+        // let PackageId = "<%= packageOrder.PackageID %>"
         const formData = {
           CustFirstName: firstname,
           CustLastName: lastname,
@@ -190,7 +190,7 @@
           TravelerCount: TravelerCount,
           AgentId: AgentId,
           TripTypeId: TripTypeId,
-          PackageId :PackageId
+          PackageId : "<%= packageOrder.PackageID %>"
         };
 
         // send the request

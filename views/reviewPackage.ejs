@@ -54,20 +54,21 @@
         }
 
         let firstname = document.forms["form"]["firstname"].value;
-        if (!validateName(firstname)) {
-          return;
-        }
+        // if (!validateName(firstname)) {
+        //   return;
+        // }
 
         let reviewDesc = document.forms["form"]["packageReviewDesc"].value;
 
-        let rate = document.forms["form"]["rating"].value;
+        let rating = document.forms["form"]["rating"].value;
 
         let formData = {
-          lastname: lastname,
-          firstname: firstname,
-          packageReviewDesc: reviewDesc,
-          id: "<%= package.PackageID %>",
-          rate: rate,
+          reviewLastName: lastname,
+          reviewFirstName: firstname,
+          reviewDescript: reviewDesc,
+          reviewRating: rating,
+          packageId: "<%= package.PackageID %>",
+
         };
 
         // send the request
@@ -79,6 +80,7 @@
           body: JSON.stringify(formData),
         })
           .then((response) => {
+            window.location.href = "/packages"
             console.log(response);
           })
           .catch((error) => {

@@ -50,6 +50,7 @@ const Agents = require("./models/agents");
 const Customers = require("./models/customers");
 const Packages = require("./models/packages");
 const TripTypes = require("./models/triptypes");
+const Reviews = require("./models/reviews");
 // =======================================================
 // Sets our Root Directory
 // =======================================================
@@ -130,7 +131,8 @@ app.get("/agentdelete/:id", async (req, res) => {
 
 app.get("/packages", async (req, res) => {
   const packages = await Packages.findAll();
-  res.render("packages", { packages: packages });
+  const reviews = await Reviews.findAll();
+  res.render("packages", { packages: packages, reviews: reviews });
 });
 
 /**=======================
@@ -236,12 +238,11 @@ app.post("/reviewPackage/:id", async (req, res) => {
   const package = await Packages.findByPk(req.params.id);
   res.render("reviewPackage", { package: package });
 });
-app.post("/reviewSubmit/:id", (req, res) => {
-//   const packageID = Object.keys(req.body)[0];
-//   console.log(packageID);
-console.log("1111111111")
-  console.log(req.body);
-  res.redirect("packages");
+app.post("/reviewSubmit", async (req, res) => {
+    const {reviewFirstName,reviewLastName,reviewDescript,reviewRating,packageId}= req.body
+    await Reviews.create({reviewFirstName,reviewLastName,reviewDescript,reviewRating,packageId})
+    console.log(req.body);
+    res.redirect("packages");
 });
 
 /**=======================
