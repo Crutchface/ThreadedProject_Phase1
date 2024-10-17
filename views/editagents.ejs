@@ -1,21 +1,17 @@
 <%- include('header') %>
     
 <div class="content-container">
-  <div class="agents">
+  
     <h1>Edit Agents</h1>
     <% agents.forEach(agent => { %>
     <li>
       <%= agent.AgtFirstName %> <%= agent.AgtLastName %>
       <a href="/agentedit/<%= agent.AgentId %>" class="button">Edit</a>
-      <a href="/agentdelete/<%= agent.AgentId %>" class="button"
-        >Delete</a
-      >
+      <a href="/agentdelete/<%= agent.AgentId %>" class="button">Delete</a
+>
     </li>
     <br>
     <% }) %>
-
-
-  </div>
 
 
   </div>
