@@ -1,12 +1,13 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
-  </head>
-  <body>
-    <button onclick="editAgents()">Edit Agents</button>
+<%- include('header') %>
+<div class="content-container">
+  
+
+  <div class="agents">
+    
+  </div>
+
+  <div class="agents">
+  
     <% agency.forEach(location => { %>
     <h1>
       <%= location.AgncyCity %> <%= location.AgncyAddress %> <%=
@@ -14,11 +15,24 @@
     </h1>
     <% agents.forEach(agent => { %> <% if(agent.AgencyId === location.AgencyID){
     %>
-    <li>
+    
+      <li>
       <%= agent.AgtFirstName %> <%= agent.AgtLastName %> <%= agent.AgtBusPhone
       %> <%= agent.AgtEmail %>
     </li>
+      
+      
     <% } %> <% }) %> <% }) %>
+  </div>
+  <br>
+    
+    <button class="button" onclick="editAgents()">Edit Agents</button>
+    
+   
+  
+
+</div>
+    
 
     <script>
       function editAgents() {

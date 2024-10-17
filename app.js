@@ -61,6 +61,7 @@ const rootDir = path.dirname(require.main.filename);
 // =======================================================
 app.use(express.static(path.join(rootDir, "asset")));
 app.use(express.static(path.join(rootDir, "views")));
+app.use('/public', express.static('public'));
 
 // =======================================================
 // sets our view engine to ejs
@@ -76,6 +77,11 @@ app.use(express.json())
 //=========================================================
 // endpoints
 // =======================================================
+
+app.get("/", async (req,res)=>{
+  const packages = await Packages.findAll();
+  res.render("homepage", { packages: packages });
+});
 
 /**=======================
  * !      Agents Endpoints
