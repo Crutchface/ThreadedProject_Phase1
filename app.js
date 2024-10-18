@@ -77,9 +77,12 @@ app.use(express.json())
 // endpoints
 // =======================================================
 
+/**=======================
+ * !      Homepage  Endpoint
+ *========================**/
 app.get("/", async (req,res)=>{
   const packages = await Packages.findAll();
-  res.render("homepage", { packages: packages });
+  res.render("homepage", { packages: packages, pageTitle: "Welcome to Travel Experts!" });
 });
 
 /**=======================
@@ -91,14 +94,14 @@ app.get("/agents", async (req, res) => {
   
   const agents = await Agents.findAll();
   const agency = await Agency.findAll();
-  res.render("agents", { agents: agents, agency: agency });
+  res.render("agents", { agents: agents, agency: agency, pageTitle: "Contact one of our agents"  });
 });
 
 // Endpoint for editing all agents
 app.get("/editagents", async (req, res) => {
   const agents = await Agents.findAll();
   console.log(agents);
-  res.render("editagents", { agents: agents });
+  res.render("editagents", { agents: agents,  pageTitle: "Edit existing agent details"  });
 });
 
 // Ednpoint for editing specific agent
@@ -106,7 +109,7 @@ app.get("/agentedit/:id", async (req, res) => {
   // use find by pk to find by primary key
   // takes the id to search as a a parameter
   const agent = await Agents.findByPk(req.params.id);
-  res.render("agentedit", { agent });
+  res.render("agentedit", { agent , pageTitle: "Agent Editing" });
 });
 
 //  Post for the update
@@ -139,7 +142,7 @@ app.get("/packages", async (req, res) => {
   const packages = await Packages.findAll();
   console.log(packages)
   const reviews = await Reviews.findAll();
-  res.render("packages", { packages: packages, reviews: reviews });
+  res.render("packages", { packages: packages, reviews: reviews, pageTitle: "Please view all of our great packages!"  });
 });
 
 /**=======================
@@ -205,7 +208,7 @@ app.post("/packageOrder", async (req, res) => {
     });
 
     if (lastRecord.length > 0) {
-      // Increment the last CustomerId by 1
+     
       nextCustomerId = lastRecord[0].CustomerId;
     }
   } catch (error) {
@@ -243,7 +246,7 @@ app.post("/packageOrder", async (req, res) => {
 
 app.post("/reviewPackage/:id", async (req, res) => {
   const package = await Packages.findByPk(req.params.id);
-  res.render("reviewPackage", { package: package });
+  res.render("reviewPackage", { package: package, pageTitle: "Please review any packages you have booked!"  });
 });
 app.post("/reviewSubmit", async (req, res) => {
     const {reviewFirstName,reviewLastName,reviewDescript,reviewRating,packageId}= req.body
@@ -254,7 +257,7 @@ app.post("/reviewSubmit", async (req, res) => {
 
 app.get("/deletereview", async (req, res) => {
   const reviews = await Reviews.findAll();
-  res.render("deletereview", { reviews: reviews });
+  res.render("deletereview", { reviews: reviews, pageTitle: "Delete any problematic reviews"  });
 });
 
 app.get("/deletereview/:id", async (req, res)=>{
