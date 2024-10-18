@@ -1,6 +1,5 @@
 // TODO : 
 //        
-//        Create table for review and program logic
 //        Make database logic for agents
 //        Make dates display as red if too old
 //        If Time : Move booking number feature to ext 
@@ -89,6 +88,7 @@ app.get("/", async (req,res)=>{
 
 // Endpoint for agents w/ agency information
 app.get("/agents", async (req, res) => {
+  
   const agents = await Agents.findAll();
   const agency = await Agency.findAll();
   res.render("agents", { agents: agents, agency: agency });
@@ -137,6 +137,7 @@ app.get("/agentdelete/:id", async (req, res) => {
 
 app.get("/packages", async (req, res) => {
   const packages = await Packages.findAll();
+  console.log(packages)
   const reviews = await Reviews.findAll();
   res.render("packages", { packages: packages, reviews: reviews });
 });
@@ -250,6 +251,18 @@ app.post("/reviewSubmit", async (req, res) => {
     console.log(req.body);
     res.redirect("packages");
 });
+
+app.get("/deletereview", async (req, res) => {
+  const reviews = await Reviews.findAll();
+  res.render("deletereview", { reviews: reviews });
+});
+
+app.get("/deletereview/:id", async (req, res)=>{
+  await Reviews.destroy({ where: { ReviewId: req.params.id } });
+  res.redirect("/deletereview")
+});
+
+
 
 /**=======================
  * !      404 Endpoint

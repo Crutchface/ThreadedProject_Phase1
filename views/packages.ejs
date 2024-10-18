@@ -21,7 +21,8 @@
   
  
 
-    <p><%= package.PkgBasePrice %></p>
+    <p>$<%= parseFloat(package.PkgBasePrice).toFixed(2) %></p>
+  
     <form action="order/<%= package.PackageID %>" method="post">
       <input class="button" type="submit" value="Order This Package" />
     </form>
