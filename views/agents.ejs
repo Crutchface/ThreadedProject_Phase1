@@ -1,39 +1,53 @@
-<%- include('header') %>
-<div class="content-container">
+<%- include('./includes/head.ejs') %>
+<body>
+
+  <%- include('./includes/header.ejs') %>
+
+  <%- include('./includes/nav-bar.ejs') %>
+
+
+  <div class="content-container">
   
 
-  <div class="agents">
-  
-    <% agency.forEach(location => { %>
-    <h1>
-      <%= location.AgncyCity %> <%= location.AgncyAddress %> <%=
-      location.AgncyPhone %>
-    </h1>
-    <% agents.forEach(agent => { %> <% if(agent.AgencyId === location.AgencyID){
-    %>
+    <div class="agents">
     
-      <li>
-      <%= agent.AgtFirstName %> <%= agent.AgtLastName %> <%= agent.AgtBusPhone
-      %> <%= agent.AgtEmail %>
-    </li>
+      <% agency.forEach(location => { %>
+      <h1>
+        <%= location.AgncyCity %> <%= location.AgncyAddress %> <%=
+        location.AgncyPhone %>
+      </h1>
+      <% agents.forEach(agent => { %> <% if(agent.AgencyId === location.AgencyID){
+      %>
       
+        <li>
+        <%= agent.AgtFirstName %> <%= agent.AgtLastName %> <%= agent.AgtBusPhone
+        %> <%= agent.AgtEmail %>
+      </li>
+        
+        
+      <% } %> <% }) %> <% }) %>
+    </div>
+    <br>
       
-    <% } %> <% }) %> <% }) %>
+      <button class="button" onclick="editAgents()">Edit Agents</button>
+      
+     
+    
+  
   </div>
-  <br>
-    
-    <button class="button" onclick="editAgents()">Edit Agents</button>
-    
-   
+
+  <%- include('./includes/footer.ejs') %>
+
   
-
-</div>
-    
-
-    <script>
-      function editAgents() {
-        window.location.href = "/editagents";
-      }
-    </script>
-  </body>
+      
+  
+      <script>
+        function editAgents() {
+          window.location.href = "/editagents";
+        }
+      </script>
+  
+</body>
 </html>
+
+  

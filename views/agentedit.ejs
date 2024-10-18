@@ -1,12 +1,10 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>AgentEdit</title>
-    <script type="text/javascript" src="/validate.js"></script>
-  </head>
+<%- include('./includes/head.ejs') %>
   <body>
+
+    <%- include('./includes/header.ejs') %>
+    <%- include('./includes/nav-bar.ejs') %>
+
+
     <form id="form" action="/agentedit/<%= agent.AgentId %>" method="post">
       <label for="">First Name</label>
       <input
@@ -53,6 +51,8 @@
       
       <button type="submit" id="submit">Update user</button>
     </form>
+    <%- include('./includes/footer.ejs') %>
+    <script type="text/javascript" src="/validate.js"></script>
     <script>
       const form = document.getElementById("form");
 
