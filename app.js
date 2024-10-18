@@ -60,6 +60,7 @@ const rootDir = path.dirname(require.main.filename);
 // =======================================================
 app.use(express.static(path.join(rootDir, "asset")));
 app.use(express.static(path.join(rootDir, "views")));
+
 app.use('/public', express.static('public'));
 
 // =======================================================
@@ -160,6 +161,7 @@ app.post("/order/:id", async (req, res) => {
     packageOrder: packageOrder,
     agents: agents,
     tripTypes: tripTypes,
+    pageTitle: "Place an Order"
   });
 });
 
