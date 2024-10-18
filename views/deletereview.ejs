@@ -1,0 +1,22 @@
+<%- include('header') %>
+    
+<div class="content-container">
+  <div class="reviews">
+    <h1>Delete Reviews</h1>
+    <% reviews.forEach(review => { %>
+    <li>
+      <%= review.reviewFirstName %> <%= review.reviewLastName %> <%= review.reviewDescript %> <%= review.reviewRating %>  <%= review.packageId %>
+      <a href="/deletereview/<%= review.ReviewId %>" class="button"
+        >Delete</a
+      >
+    </li>
+    <br>
+    <% }) %>
+
+
+  </div>
+
+
+  </div>
+  </body>
+</html>

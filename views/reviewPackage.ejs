@@ -60,15 +60,18 @@
         }
 
         let reviewDesc = document.forms["form"]["packageReviewDesc"].value;
+        if (!validateDesc(reviewDesc)) {
+          return;
+        }
 
-        let rate = document.forms["form"]["rating"].value;
+        let rating = document.forms["form"]["rating"].value;
 
         let formData = {
-          lastname: lastname,
-          firstname: firstname,
-          packageReviewDesc: reviewDesc,
-          id: "<%= package.PackageID %>",
-          rate: rate,
+          reviewLastName: lastname,
+          reviewFirstName: firstname,
+          reviewDescript: reviewDesc,
+          reviewRating: rating,
+          packageId: "<%= package.PackageID %>",
         };
 
         // send the request
@@ -80,6 +83,7 @@
           body: JSON.stringify(formData),
         })
           .then((response) => {
+            window.location.href = "/packages";
             console.log(response);
           })
           .catch((error) => {
