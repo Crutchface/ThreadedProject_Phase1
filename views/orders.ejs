@@ -1,12 +1,10 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Orders</title>
-    <script type="text/javascript" src="/validate.js"></script>
-  </head>
+<%- include('./includes/head.ejs') %>
   <body>
+
+    <%- include('./includes/header.ejs') %>
+    <%- include('./includes/nav-bar.ejs') %>
+
+
     <div>
       <form class="packageOrder" id="form" action="/packageOrder" method="post">
         <h1 name="<% packageOrder.PackageID %>"><%= packageOrder.PkgName %></h1>
@@ -117,6 +115,8 @@
         <button class="inputDiv" type="submit">Place Order</button>
       </form>
     </div>
+    <%- include('./includes/footer.ejs') %>
+    <script type="text/javascript" src="/validate.js"></script>
     <script>
       const form = document.getElementById("form");
 

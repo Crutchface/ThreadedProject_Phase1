@@ -1,4 +1,11 @@
-<%- include('header') %>
+<%- include('./includes/head.ejs') %>
+
+<body>
+
+<%- include('./includes/header.ejs') %>
+<%- include('./includes/nav-bar.ejs') %>
+
+<div class="content-container">
     <% packages.forEach(package => { %>
       <h2><%= package.PkgName %></h2>
       <h4><%= package.PkgStartDate %> - <%= package.PkgEndDate %></h4>
@@ -31,5 +38,9 @@
     </form>
     <br />
     <% }) %>
+
+  </div>
+
+  <%- include('./includes/footer.ejs') %>
   </body>
 </html>

@@ -1,12 +1,10 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Review Packages</title>
-    <script type="text/javascript" src="/validate.js"></script>
-  </head>
+<%- include('./includes/head.ejs') %>
   <body>
+
+    <%- include('./includes/header.ejs') %>
+    <%- include('./includes/nav-bar.ejs') %>
+
+
     <form id="form" action="/reviewSubmit" method="post">
       <h2><%= package.PkgName %></h2>
       <p><%= package.PkgDesc %></p>
@@ -43,6 +41,9 @@
       </fieldset>
       <input type="submit" value="Submit your review" />
     </form>
+
+    <%- include('./includes/footer.ejs') %>
+    <script type="text/javascript" src="/validate.js"></script>
     <script>
       const form = document.getElementById("form");
 
@@ -96,5 +97,6 @@
         Submit();
       });
     </script>
+    
   </body>
 </html>

@@ -1,183 +1,110 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><%= pageTitle %></title>
-    <!-- link to css page -->
-    <link href= "/public/css/styles.css" rel="stylesheet" type="text/css" />
-     
-    
-     <!-- link to font used -->
-     <link rel="preconnect" href="https://fonts.googleapis.com">
-     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-     <link href="https://fonts.googleapis.com/css2?family=Afacad+Flux:wght@100..1000&display=swap" rel="stylesheet">
-     
-     
-</head>
+
+<%- include('./includes/head.ejs') %>
 <body>
     
-    <div class="grid-container" id="Homepage">
-        <header class="header">
-            <!-- Header with the logo and "Welcome to Travel Experts" -->
-            <a href="/"><img src="./public/images/travel.png" height="175px"></a>
-            <h1>Travel Experts</h1>
-        </header>
+    <%- include('./includes/header.ejs') %>
 
-        <!-- a navigation bar with links to different pages
-        the only ones that work are the Our Experts page and the Register page 
-        links to the contact and register page respectively -->
-
-        <div class="navbar">
-            
-            <a href="/agents">Agents</a>
-            <a href="/editagents">Edit Agents</a>
-            <a href="/packages">Packages</a>
-            <div class="dropdown">
-              <button class="dropbtn">Order Packages 
-                
-              </button>
-              <div class="dropdown-content">
-                <% packages.forEach(package => { %>
-                    <form action="order/<%= package.PackageID %>" method="post">
-                        <input type="submit" value="<%= package.PkgName %>">
-                        </form>
-                 
-                <% }) %> 
-                
-              </div>
-            </div>
-            <div class="dropdown">
-                <button class="dropbtn">Review Packages 
-                  
-                </button>
-                <div class="dropdown-content">
-                  <% packages.forEach(package => { %>
-                      <form action="reviewPackage/<%= package.PackageID %>" method="post">
-                          <input type="submit" value="<%= package.PkgName %>">
-                        </form>
-                   
-                  <% }) %>
-                  
-                </div>
-            </div>  
-        </div>
-
-       
-            
-            
         
 
-        <main class="main-content" id="main">
-            <div class="welcome">
+    <%- include('./includes/nav-bar-homepage.ejs') %>
+
+     
+
+    <main class="main-content" id="main">
+      <div class="welcome">
 
             
-            <h1>Welcome to Travel Experts</h1>
-            </div>
+        <h1>Welcome to Travel Experts</h1>
+      </div>
 
-            <!-- Main area of the webpage that contains the images of various destinations -->
-             
-             <div class="slideshow-container">
+            
+      <div class="slideshow-container">
 
-              <div class="mySlides fade">
+        <div class="mySlides fade">
                  
-                <img src="./public/images/vacation1.jpg" style="width:100%">
-                <div class="text">"Caribbean New Year"</div>
-              </div>
+          <img src="./public/images/vacation1.jpg" style="width:100%">
+        <div class="text">"Caribbean New Year"
+
+        </div>
+      </div>
                 
              
                
-               <div class="mySlides fade">
+      <div class="mySlides fade">
                  
-                 <img src="./public/images/vacation2.jpg" style="width:100%">
-                 <div class="text">"Polynesian Paradise"</div>
-               </div>
+        <img src="./public/images/vacation2.jpg" style="width:100%">
+        <div class="text">"Polynesian Paradise"</div>
+      </div>
              
-               <div class="mySlides fade">
+      <div class="mySlides fade">
                  
-                 <img src="./public/images/vacation3.jpg" style="width:100%">
-                 <div class="text">"Asian Expedition"</div>
-               </div>
+        <img src="./public/images/vacation3.jpg" style="width:100%">
+        <div class="text">"Asian Expedition"</div>
+      </div>
              
-               <div class="mySlides fade">
+      <div class="mySlides fade">
                  
-                 <img src="./public/images/vacation4.jpg" style="width:100%">
-                 <div class="text">"European Vacation"</div>
-               </div>
+        <img src="./public/images/vacation4.jpg" style="width:100%">
+        <div class="text">"European Vacation"</div>
+      </div>
              
-               <!-- Next and previous buttons -->
-               <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
-               <a class="next" onclick="plusSlides(1)">&#10095;</a>
-             </div>
-             <br>
+              
+      <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+      <a class="next" onclick="plusSlides(1)">&#10095;</a>
+    
+      <br>
              
-             <!-- The dots/circles -->
-             <div style="text-align:center">
-               <span class="dot" onclick="currentSlide(1)"></span>
-               <span class="dot" onclick="currentSlide(2)"></span>
-               <span class="dot" onclick="currentSlide(3)"></span>
-               <span class="dot" onclick="currentSlide(4)"></span>
+      <!-- The dots/circles -->
+      <div style="text-align:center">
+        <span class="dot" onclick="currentSlide(1)"></span>
+        <span class="dot" onclick="currentSlide(2)"></span>
+        <span class="dot" onclick="currentSlide(3)"></span>
+        <span class="dot" onclick="currentSlide(4)"></span>
 
-             </div>
+      </div>
             
 
     
 
-             <script>
+      <script>
                 
-                let slideIndex = 1;
-                showSlides(slideIndex);
+        let slideIndex = 1;
+        showSlides(slideIndex);
 
-                // Next/previous controls
-                function plusSlides(n) {
-                showSlides(slideIndex += n);
-                }
+        // Next/previous controls
+        function plusSlides(n) {
+          showSlides(slideIndex += n);
+        }
 
-                // Thumbnail image controls
-                function currentSlide(n) {
-                showSlides(slideIndex = n);
-                }
+        // Thumbnail image controls
+        function currentSlide(n) {
+          showSlides(slideIndex = n);
+        }
 
-                function showSlides(n) {
-                let i;
-                let slides = document.getElementsByClassName("mySlides");
-                let dots = document.getElementsByClassName("dot");
-                if (n > slides.length) {slideIndex = 1}
-                if (n < 1) {slideIndex = slides.length}
-                for (i = 0; i < slides.length; i++) {
-                    slides[i].style.display = "none";
-                }
-                for (i = 0; i < dots.length; i++) {
-                    dots[i].className = dots[i].className.replace(" active", "");
-                }
-                slides[slideIndex-1].style.display = "block";
-                dots[slideIndex-1].className += " active";
-                }
-                            </script>
+        function showSlides(n) {
+          let i;
+          let slides = document.getElementsByClassName("mySlides");
+          let dots = document.getElementsByClassName("dot");
+          if (n > slides.length) {slideIndex = 1}
+          if (n < 1) {slideIndex = slides.length}
+          for (i = 0; i < slides.length; i++) {
+            slides[i].style.display = "none";
+          }
+          for (i = 0; i < dots.length; i++) {
+            dots[i].className = dots[i].className.replace(" active", "");
+          }
+          slides[slideIndex-1].style.display = "block";
+          dots[slideIndex-1].className += " active";
+        }
+      </script>
                             
-                        </main>
+    </main>
                         
 
                         
 
-                        <footer>
-                            <!-- footer with the copyright logo -->
-                             <hr>
-                            
-                            <div class="footertext">
-                                <p>&#169 Copyright 2024</p>
-                            </div>
-                            
-                        </footer>
+    <%- include('./includes/footer.ejs') %>
                         
 
-                        
-                        
-
-    
-
-    </div>
-
-    
 </body>
 </html>
