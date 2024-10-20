@@ -1,19 +1,20 @@
-<%- include('header') %>
-    
+<%- include('./includes/head.ejs') %>
+<body>
+  <%- include('./includes/header.ejs') %>
+  <%- include('./includes/nav-bar.ejs') %>
+
 <div class="content-container">
   <div class="reviews">
     <h1>Delete Reviews</h1>
     <% reviews.forEach(review => { %>
     <li>
-      <%= review.reviewFirstName %> <%= review.reviewLastName %> <%= review.reviewDescript %> <%= review.reviewRating %>  <%= review.packageId %>
+      <%= review.reviewFirstName %> <%= review.reviewLastName %>'s Review : <%= review.reviewDescript %> Rating : <%= review.reviewRating %> Package Information : <%= review.packageId %>
       <a href="/deletereview/<%= review.ReviewId %>" class="button"
         >Delete</a
       >
     </li>
     <br>
     <% }) %>
-
-
   </div>
 
 

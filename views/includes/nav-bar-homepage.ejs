@@ -9,7 +9,7 @@
       </button>
       <div class="dropdown-content">
         <% packages.forEach(package => { %>
-            <form action="order/<%= package.PackageID %>" method="post">
+            <form action="order/<%= package.PackageID %>" >
                 <input type="submit" value="<%= package.PkgName %>">
                 </form>
          
@@ -23,7 +23,7 @@
         </button>
         <div class="dropdown-content">
           <% packages.forEach(package => { %>
-              <form action="reviewPackage/<%= package.PackageID %>" method="post">
+              <form action="reviewPackage/<%= package.PackageID %>">
                   <input type="submit" value="<%= package.PkgName %>">
                 </form>
            
