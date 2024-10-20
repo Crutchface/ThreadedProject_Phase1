@@ -1,4 +1,6 @@
 // Threaded Project - Chris Ferguson, Daryl Wang, Kazi Fattah, Taiwo AdeJoro
+// Front End : Kazi & Taiwo
+// Back End : Chris & Daryl
 
 
 // ======================================================
@@ -14,7 +16,7 @@ function makeBookingNo(length) {
     counter += 1;
   }
   return result;
-}
+};
 
 // ======================================================
 // Calls in our npm modules
@@ -136,7 +138,9 @@ app.get("/agentdelete/:id", async (req, res) => {
 app.get("/packages", async (req, res) => {
   const packages = await Packages.findAll();
   const reviews = await Reviews.findAll();
-  res.render("packages", { packages: packages, reviews: reviews, pageTitle: "Please view all of our great packages!"  });
+  // Creates a current Date for turning older dates red, or not showing previously completed packages
+  const currentDate = new Date();
+  res.render("packages", { packages: packages, reviews: reviews, pageTitle: "Please view all of our great packages!", currentDate});
 });
 
 /**=======================
@@ -198,7 +202,7 @@ app.post("/packageOrder", async (req, res) => {
       // Select only the CustomerId column
       attributes: ["CustomerId"], // Select only the CustomerId column
     });
-
+    // Makes the customer ID Number
     if (lastRecord.length > 0) {
      
       nextCustomerId = lastRecord[0].CustomerId;
@@ -207,8 +211,9 @@ app.post("/packageOrder", async (req, res) => {
     console.error("Error processing order:", error);
     res.status(500).json({ error: "Internal Server Error" }); // Handle error gracefully
   }
-  console.log(req.body);
+  // console.log(req.body);
   const BookingDate = new Date();
+  // makes a random 6 character booking number
   const BookingNo = makeBookingNo(6);
   const CustomerId = nextCustomerId;
 
