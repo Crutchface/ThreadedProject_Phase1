@@ -1,12 +1,13 @@
-<%- include('./includes/head.ejs') %>
+<!DOCTYPE html>
+<html lang="en">
+  <%- include('./includes/head.ejs') %>
   <body>
-
-    <%- include('./includes/header.ejs') %>
-    <%- include('./includes/nav-bar.ejs') %>
+    <%- include('./includes/header.ejs') %> <%-
+    include('./includes/nav-bar.ejs') %>
     <div class="form-container">
       <form class="formbox" id="form" action="/packageOrder" method="post">
         <h1 name="<% packageOrder.PackageID %>"><%= packageOrder.PkgName %></h1>
-          <div class="inputDiv">
+        <div class="inputDiv">
           <label for="CustFirstName">First Name: </label>
           <input type="text" name="CustFirstName" id="CustFirstName" />
         </div>
@@ -33,7 +34,8 @@
         </div>
         <br />
         <label for="CustProv" id="CustProv">Province: </label>
-        <select name ="CustProv">Province
+        <select name="CustProv">
+          Province
           <option value="AB">Alberta</option>
           <option value="BC">British Columbia</option>
           <option value="MB">Manitoba</option>
@@ -47,10 +49,10 @@
           <option value="QC">Quebec</option>
           <option value="SK">Saskatchewan</option>
           <option value="YT">Yukon</option>
-      </select>
-      <br/>
-      <br/>
-              <div class="inputDiv">
+        </select>
+        <br />
+        <br />
+        <div class="inputDiv">
           <label for="CustPostal">Postal Code</label>
           <input type="text" name="CustPostal" id="CustPostal" />
         </div>
@@ -102,14 +104,16 @@
           <option value="<%= type.TripTypeId %>"><%= type.TTName %></option>
           <% }) %>
         </select>
-        <br/>
-        <br/>
+        <br />
+        <br />
         <label for="PackageId">Current Package</label>
-        <select name="PackageId" id="PackageId" disabled >
-          <option value="<%= packageOrder.PackageID %>" ><%= packageOrder.PkgName %></option>
+        <select name="PackageId" id="PackageId" disabled>
+          <option value="<%= packageOrder.PackageID %>">
+            <%= packageOrder.PkgName %>
+          </option>
         </select>
-        <br/>
-        <br/>
+        <br />
+        <br />
         <button class="button" type="submit">Place Order</button>
       </form>
     </div>
@@ -121,7 +125,6 @@
 
       // Validation and Submit
       function Submit() {
-
         let lastname = document.forms["form"]["CustLastName"].value;
         if (!validateName(lastname)) {
           return;
@@ -189,7 +192,7 @@
           TravelerCount: TravelerCount,
           AgentId: AgentId,
           TripTypeId: TripTypeId,
-          PackageId : "<%= packageOrder.PackageID %>"
+          PackageId: "<%= packageOrder.PackageID %>",
         };
 
         // send the request
@@ -201,7 +204,7 @@
           body: JSON.stringify(formData),
         })
           .then((response) => {
-            window.location.href = "/packages"
+            window.location.href = "/packages";
             console.log(response);
           })
           .catch((error) => {

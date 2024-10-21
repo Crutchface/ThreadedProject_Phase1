@@ -1,34 +1,34 @@
 <div class="navbar">
-            
-    <a href="/agents">Agents</a>
-    <a href="/editagents">Edit Agents</a>
-    <a href="/packages">Packages</a>
-    <div class="dropdown">
-      <button class="dropbtn">Order Packages 
-        
-      </button>
-      <div class="dropdown-content">
-        <% packages.forEach(package => { %>
-            <form action="order/<%= package.PackageID %>" >
-                <input type="submit" value="<%= package.PkgName %>">
-                </form>
-         
-        <% }) %> 
-        
-      </div>
+
+  <a href="/agents">Agents</a>
+  <a href="/editagents">Edit Agents</a>
+  <a href="/packages">Packages</a>
+  <div class="dropdown">
+    <button class="dropbtn">Order Packages
+
+    </button>
+    <div class="dropdown-content">
+      <% packages.forEach(package => { %>
+      <form action="order/<%= package.PackageID %>">
+        <input type="submit" value="<%= package.PkgName %>">
+      </form>
+
+      <% }) %>
+
     </div>
-    <div class="dropdown">
-        <button class="dropbtn">Review Packages 
-          
-        </button>
-        <div class="dropdown-content">
-          <% packages.forEach(package => { %>
-              <form action="reviewPackage/<%= package.PackageID %>">
-                  <input type="submit" value="<%= package.PkgName %>">
-                </form>
-           
-          <% }) %>
-          
-        </div>
-    </div>  
+  </div>
+  <div class="dropdown">
+    <button class="dropbtn">Review Packages
+
+    </button>
+    <div class="dropdown-content">
+      <% packages.forEach(package => { %>
+      <form action="reviewPackage/<%= package.PackageID %>">
+        <input type="submit" value="<%= package.PkgName %>">
+      </form>
+
+      <% }) %>
+
+    </div>
+  </div>
 </div>

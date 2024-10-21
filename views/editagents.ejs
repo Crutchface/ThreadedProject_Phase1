@@ -1,33 +1,31 @@
-<%- include('./includes/head.ejs') %>
+<!DOCTYPE html>
+<html lang="en">
+  <%- include('./includes/head.ejs') %>
+  <body>
+    <%- include('./includes/header.ejs') %> <%-
+    include('./includes/nav-bar.ejs') %>
+    <div class="edit-container">
+      <h1>Edit Agents</h1>
+      <div class="agent-grid">
+        <% agents.forEach(agent => { %>
+        <div class="agent-name">
+          <p>
+            <%= agent.AgtFirstName %> <%= agent.AgtLastName %>
 
-<body>
-
-  <%- include('./includes/header.ejs') %>
-  <%- include('./includes/nav-bar.ejs') %>
-    
-<div class="edit-container">
-  
-    <h1>Edit Agents</h1>
-    <div class="agent-grid">
-      <% agents.forEach(agent => { %>
-      <div class="agent-name"><p>
-        <%= agent.AgtFirstName %> <%= agent.AgtLastName %>
-        
-        <!-- <a href="/agentdelete/<%= agent.AgentId %>" class="button"
+            <!-- <a href="/agentdelete/<%= agent.AgentId %>" class="button"
           >Delete</a
         > -->
-        </p></div>
-        <a class="agent-link" href="/agentedit/<%= agent.AgentId %>"><button class="button">Edit</button></a>
-      
-    <% }) %>
-    </div>  
+          </p>
+        </div>
+        <a class="agent-link" href="/agentedit/<%= agent.AgentId %>"
+          ><button class="button">Edit</button></a
+        >
 
+        <% }) %>
+      </div>
+    </div>
 
-  </div>
-
-  <%- include('./includes/footer.ejs') %>
-  <script>
-    
-  </script>
+    <%- include('./includes/footer.ejs') %>
+    <script></script>
   </body>
 </html>
