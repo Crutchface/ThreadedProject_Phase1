@@ -1,40 +1,22 @@
 <%- include('./includes/head.ejs') %>
-  <body>
 
-    <%- include('./includes/header.ejs') %>
-    <%- include('./includes/nav-bar.ejs') %>
- 
-
-
-  <form>
-<div class="form-container">
-<form class="formbox"  id="form" action="/agentedit" method="post">
-  
+<body>
+  <%- include('./includes/header.ejs') %>
+  <%- include('./includes/nav-bar.ejs') %>
+  <div class="form-container">
       <label for="">First Name</label>
-      <input
-        type="text"
-        name="firstname"
-        value="<%= agent.AgtFirstName %>"
-      /><br />
+      <input type="text" name="firstname" value="<%= agent.AgtFirstName %>" />
+      <br />
       <label for="">Middle Initial</label>
-      <input
-        type="text"
-        name="middleinitial"
-        value="<%= agent.AgtMiddleInitial %>"
-      /><br />
+      <input type="text" name="middleinitial" value="<%= agent.AgtMiddleInitial %>" />
+      <br />
 
       <label for="">Last Name</label>
-      <input
-        type="text"
-        name="lastname"
-        value="<%= agent.AgtLastName %>"
-      /><br />
+      <input type="text" name="lastname" value="<%= agent.AgtLastName %>" />
+      <br />
       <label for="">Business Phone Number</label>
-      <input
-        type="text"
-        name="busphone"
-        value="<%= agent.AgtBusPhone %>"
-      /><br />
+      <input type="text" name="busphone" value="<%= agent.AgtBusPhone %>" />
+      <br />
 
       <label for="">Email</label>
       <input type="text" name="email" value="<%= agent.AgtEmail %>" /><br />
@@ -43,86 +25,81 @@
       <select name="position" id="position" value="<%= agent.AgtPosition %>">
         <option>Senior Agent</option>
         <option>Intermediate Agent</option>
-        <option>Junior Agent</option></select
-      ><br />
+        <option>Junior Agent</option>
+      </select><br />
       <label for="">Location ID</label>
-      <input
-        type="text"
-        name="location"
-        value="<%= agent.AgencyId %>"
-        readonly
-      /><br />
+      <input type="text" name="location" value="<%= agent.AgencyId %>" readonly /><br />
+      <button class="button" type="submit" id="submit">Update user</button>
+    </form>
+  </div>
+  <%- include('./includes/footer.ejs') %>
+  <script type="text/javascript" src="/validate.js"></script>
+  <script>
+    const form = document.getElementById("form");
 
-      <button class = "button" type="submit" id="submit" >Update user</button>
-    </form></div>
-    <%- include('./includes/footer.ejs') %>
-    <script type="text/javascript" src="/validate.js"></script>
-    <script>
-      
-      const form = document.getElementById("form");
-      console.log(form)
-      // Validation and Submit
-      function Submit() {
-        let lastname = document.forms["form"]["lastname"].value;
-        if (!validateName(lastname)) {
-          return;
-        }
+    // Validation and Submit
+    function Submit() {
+      let lastname = document.forms["form"]["lastname"].value;
+      if (!validateName(lastname)) {
+        return;
+      }
 
-        let firstname = document.forms["form"]["firstname"].value;
-        if (!validateName(firstname)) {
-          return;
-        }
-        let middleinitial = document.forms["form"]["middleinitial"].value;
-        if (!validateMiddleName(middleinitial)) {
-          return;
-        }
+      let firstname = document.forms["form"]["firstname"].value;
+      if (!validateName(firstname)) {
+        return;
+      }
+      let middleinitial = document.forms["form"]["middleinitial"].value;
+      if (!validateMiddleName(middleinitial)) {
+        return;
+      }
 
-        let busphone = document.forms["form"]["busphone"].value;
-        if (!validatePhone(busphone)) {
-          return;
-        }
+      let busphone = document.forms["form"]["busphone"].value;
+      if (!validatePhone(busphone)) {
+        return;
+      }
 
-        let position = document.forms["form"]["position"].value;
+      let position = document.forms["form"]["position"].value;
 
-        let email = document.forms["form"]["email"].value;
-        if (!validateEmail(email)) {
-          return;
-        }
-        let location = document.forms["form"]["location"].value;
+      let email = document.forms["form"]["email"].value;
+      if (!validateEmail(email)) {
+        return;
+      }
+      let location = document.forms["form"]["location"].value;
 
-        AgentId = "<%= agent.AgentId %>";
-        const formData = {
-          AgentId: AgentId,
-          AgtFirstName: firstname,
-          AgtMiddleInitial: middleinitial,
-          AgtLastName: lastname,
-          AgtBusPhone: busphone,
-          AgtEmail: email,
-          AgtPosition: position,
-          AgencyID: location,
-        };
+      AgentId = "<%= agent.AgentId %>";
+      const formData = {
+        AgentId: AgentId,
+        AgtFirstName: firstname,
+        AgtMiddleInitial: middleinitial,
+        AgtLastName: lastname,
+        AgtBusPhone: busphone,
+        AgtEmail: email,
+        AgtPosition: position,
+        AgencyID: location,
+      };
 
-        // send the request
-        fetch(`/agentedit`, {
+      // send the request
+      fetch(`/agentedit`, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
           },
           body: JSON.stringify(formData),
         })
-          .then((response) => {
-            window.location.href = "/agents";
-          })
-          .catch((error) => {
-            console.log("Error:", error);
-          });
-      }
+        .then((response) => {
+          window.location.href = "/agents";
+        })
+        .catch((error) => {
+          console.log("Error:", error);
+        });
+    }
 
-      // listen to the submit action
-      form.addEventListener("submit", (e) => {
-        e.preventDefault();
-        Submit();
-      });
-    </script>
-  </body>
+    // listen to the submit action
+    form.addEventListener("submit", (e) => {
+      e.preventDefault();
+      Submit();
+    });
+  </script>
+</body>
+
 </html>
