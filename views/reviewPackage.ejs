@@ -1,54 +1,55 @@
-<%- include('./includes/head.ejs') %>
+<!DOCTYPE html>
+<html lang="en">
+  <%- include('./includes/head.ejs') %>
   <body>
-
-    <%- include('./includes/header.ejs') %>
-    <%- include('./includes/nav-bar.ejs') %>
+    <%- include('./includes/header.ejs') %> <%-
+    include('./includes/nav-bar.ejs') %>
 
     <div class="form-container">
-    <form class="formbox" id="form" action="/reviewSubmit" method="post">
-      <h2><%= package.PkgName %></h2>
-      <p><%= package.PkgDesc %></p>
-      <label for="firstName">First Name: </label>
-      <input type="text" name="firstname" id="firstName" />
-      <br />
-      <label for="lastname">Last Name: </label>
-      <input type="text" name="lastname" id="firstName" />
-      <br />
-      <label for="packageReviewDesc">Please write us a short review!</label>
-      <textarea
-        type="text"
-        name="packageReviewDesc"
-        id="packageReviewDesc"
-      ></textarea>
-      <br>
-      <br>
-      <fieldset>
-        <legend>Please select your Rating. 5 being the highest</legend>
-        <div>
-          <input type="radio" id="rating1" name="rating" value="1" />
-          <label for="rating1">1</label>
+      <form class="formbox" id="form" action="/reviewSubmit" method="post">
+        <h2><%= package.PkgName %></h2>
+        <p><%= package.PkgDesc %></p>
+        <label for="firstName">First Name: </label>
+        <input type="text" name="firstname" id="firstName" />
+        <br />
+        <label for="lastname">Last Name: </label>
+        <input type="text" name="lastname" id="firstName" />
+        <br />
+        <label for="packageReviewDesc">Please write us a short review!</label>
+        <textarea
+          type="text"
+          name="packageReviewDesc"
+          id="packageReviewDesc"
+        ></textarea>
+        <br />
+        <br />
+        <fieldset>
+          <legend>Please select your Rating. 5 being the highest</legend>
+          <div>
+            <input type="radio" id="rating1" name="rating" value="1" />
+            <label for="rating1">1</label>
 
-          <input type="radio" id="rating2" name="rating" value="2" />
-          <label for="rating2">2</label>
+            <input type="radio" id="rating2" name="rating" value="2" />
+            <label for="rating2">2</label>
 
-          <input type="radio" id="rating3" name="rating" value="3" />
-          <label for="rating3">3</label>
+            <input type="radio" id="rating3" name="rating" value="3" />
+            <label for="rating3">3</label>
 
-          <input type="radio" id="rating4" name="rating" value="4" />
-          <label for="rating4">4</label>
+            <input type="radio" id="rating4" name="rating" value="4" />
+            <label for="rating4">4</label>
 
-          <input type="radio" id="rating5" name="rating" value="5" checked />
-          <label for="rating5">5</label>
-        </div>
-      </fieldset>
-      <!-- <label for="PackageId"> Package</label>
+            <input type="radio" id="rating5" name="rating" value="5" checked />
+            <label for="rating5">5</label>
+          </div>
+        </fieldset>
+        <!-- <label for="PackageId"> Package</label>
         <select name="PackageId" id="PackageId" disabled >
           <option value="<%= package.PackageID %>" ><%= package.PkgName %></option>
         </select> -->
-        <br>
-      <input class = "button" type="submit" value="Submit your review" />
-    </form>
-  </div>
+        <br />
+        <input class="button" type="submit" value="Submit your review" />
+      </form>
+    </div>
 
     <%- include('./includes/footer.ejs') %>
     <script type="text/javascript" src="/validate.js"></script>
@@ -105,6 +106,5 @@
         Submit();
       });
     </script>
-    
   </body>
 </html>

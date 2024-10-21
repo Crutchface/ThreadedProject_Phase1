@@ -1,49 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
 <%- include('./includes/head.ejs') %>
 
 <body>
-
-<%- include('./includes/header.ejs') %>
-<%- include('./includes/nav-bar.ejs') %>
-
-
-    <% packages.forEach(package => { %>
+  <%- include('./includes/header.ejs') %> <%-include('./includes/nav-bar.ejs')
+    %> <% packages.forEach(package => { %>
   <div class="packages-container">
-      <div class="package-card"><h1><%= package.PkgName %></h1>
+    <div class="package-card">
+      <h1><%= package.PkgName %></h1>
       <h4><b>Starts: <%= package.PkgStartDate %></b></h4>
       <h4><b>Ends: <%= package.PkgEndDate %></b></h4>
       <p><em><%= package.PkgDesc %></em></p>
-    
+
       <% 
-        // Filter reviews for the current package
-        const filteredReviews = reviews.filter(review => package.PackageID === review.packageId && review.reviewRating === 5);
-        
-        // Select a random review from the filtered reviews
-        const randomReview = filteredReviews.length > 0 ? filteredReviews[Math.floor(Math.random() * filteredReviews.length)] : null;
-      %>
-    
+        // Filter reviews for the current package 
+
+        const filteredReviews = reviews.filter(review => package.PackageID === review.packageId && review.reviewRating === 5); 
+
+        // Select a random review from the filtered reviews 
+
+        const randomReview = filteredReviews.length > 0 ? filteredReviews[Math.floor(Math.random() * filteredReviews.length)] : null; 
+        %>
       <% if (randomReview) { %>
-        <p>Looking for a second opinion? Have a look at this review: </p>
-        <p style="font-size: 16px; color: navy;"><%= randomReview.reviewFirstName %> says :  <%= randomReview.reviewDescript %></p>
-      <% } else { %>
-       
-      <% } %>
-   
-  
-    <p>$<%= parseFloat(package.PkgBasePrice).toFixed(2) %></p></div>
-  
+      <p>Looking for a second opinion? Have a look at this review:</p>
+      <p style="font-size: 16px; color: navy">
+        <%= randomReview.reviewFirstName %>
+        says :
+        <%= randomReview.reviewDescript %>
+      </p>
+      <% } else { %> <% } %>
 
-    <div class="orderbutton"><form action="order/<%= package.PackageID %>" >
-      <input class="button " type="submit" value="Order This Package" />
-    </form></div>
-    <div class="reviewbutton"><form action="reviewPackage/<%= package.PackageID %>">
+      <p>$<%= parseFloat(package.PkgBasePrice).toFixed(2) %></p>
+    </div>
 
-      <input class="button" type="submit" value="Review This Package" />
-    </form></div>
+    <div class="orderbutton">
+      <form action="order/<%= package.PackageID %>">
+        <input class="button" type="submit" value="Order This Package" />
+      </form>
+    </div>
+    <div class="reviewbutton">
+      <form action="reviewPackage/<%= package.PackageID %>">
+        <input class="button" type="submit" value="Review This Package" />
+      </form>
+    </div>
   </div>
-    <% }) %>
+  <% }) %> <%- include('./includes/footer.ejs') %>
+</body>
 
-  
-
-  <%- include('./includes/footer.ejs') %>
-  </body>
 </html>
