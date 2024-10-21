@@ -95,14 +95,14 @@ app.get("/agents", async (req, res) => {
   
   const agents = await Agents.findAll();
   const agency = await Agency.findAll();
-  res.render("agents", { agents: agents, agency: agency, pageTitle: "Contact one of our agents"  });
+  res.render("agents", { agents: agents, agency: agency, pageTitle: "Agents"  });
 });
 
 // Endpoint for editing all agents
 app.get("/editagents", async (req, res) => {
   const agents = await Agents.findAll();
   console.log(agents);
-  res.render("editagents", { agents: agents,  pageTitle: "Edit existing agent details"  });
+  res.render("editagents", { agents: agents,  pageTitle: "Edit Agents"  });
 });
 
 // Ednpoint for editing specific agent
@@ -110,7 +110,7 @@ app.get("/agentedit/:id", async (req, res) => {
   // use find by pk to find by primary key
   // takes the id to search as a a parameter
   const agent = await Agents.findByPk(req.params.id);
-  res.render("agentedit", { agent , pageTitle: "Agent Editing" });
+  res.render("agentedit", { agent , pageTitle: "Edit Agent" });
 });
 
 //  Post for the update of an agent
@@ -138,9 +138,11 @@ app.get("/agentdelete/:id", async (req, res) => {
 app.get("/packages", async (req, res) => {
   const packages = await Packages.findAll();
   const reviews = await Reviews.findAll();
-  // Creates a current Date for turning older dates red, or not showing previously completed packages
+
+   // Creates a current Date for turning older dates red, or not showing previously completed packages
   const currentDate = new Date();
-  res.render("packages", { packages: packages, reviews: reviews, pageTitle: "Please view all of our great packages!", currentDate});
+  res.render("packages", { packages: packages, reviews: reviews, pageTitle: "Packages", currentDate});
+
 });
 
 /**=======================
@@ -156,7 +158,7 @@ app.get("/order/:id", async (req, res) => {
     packageOrder: packageOrder,
     agents: agents,
     tripTypes: tripTypes,
-    pageTitle: "Place an Order"
+    pageTitle: "Place Order"
   });
 });
 // Post event for submission of order
@@ -244,7 +246,7 @@ app.post("/packageOrder", async (req, res) => {
 app.get("/reviewPackage/:id", async (req, res) => {
    
   const package = await Packages.findByPk(req.params.id);
-  res.render("reviewPackage", { package: package, pageTitle: "Please review any packages you have booked!"  });
+  res.render("reviewPackage", { package: package, pageTitle: "Review Packages"  });
 });
 
 // Post Event for submitted reviews
@@ -257,7 +259,7 @@ app.post("/reviewSubmit", async (req, res) => {
 // Delete Review Endpoints
 app.get("/deletereview", async (req, res) => {
   const reviews = await Reviews.findAll();
-  res.render("deletereview", { reviews: reviews, pageTitle: "Delete any problematic reviews"  });
+  res.render("deletereview", { reviews: reviews, pageTitle: "Delete Review"  });
 });
 
 app.get("/deletereview/:id", async (req, res)=>{
