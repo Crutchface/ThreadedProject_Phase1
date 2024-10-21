@@ -218,7 +218,7 @@ app.post("/packageOrder", async (req, res) => {
   // makes a random 6 character booking number
   const BookingNo = makeBookingNo(6);
   const CustomerId = nextCustomerId;
-
+// show then create booking 
   console.log({
     BookingDate,
     BookingNo,
@@ -235,7 +235,7 @@ app.post("/packageOrder", async (req, res) => {
     TripTypeId,
     PackageId
   });
-
+// redirect to packages after successful creation
   res.redirect("packages");
 });
 
