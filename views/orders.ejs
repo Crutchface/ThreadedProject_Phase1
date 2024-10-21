@@ -3,8 +3,8 @@
 
     <%- include('./includes/header.ejs') %>
     <%- include('./includes/nav-bar.ejs') %>
-    <div>
-      <form class="packageOrder" id="form" action="/packageOrder" method="post">
+    <div class="form-container">
+      <form class="formbox" id="form" action="/packageOrder" method="post">
         <h1 name="<% packageOrder.PackageID %>"><%= packageOrder.PkgName %></h1>
           <div class="inputDiv">
           <label for="CustFirstName">First Name: </label>
@@ -110,7 +110,7 @@
         </select>
         <br/>
         <br/>
-        <button class="inputDiv" type="submit">Place Order</button>
+        <button class="button" type="submit">Place Order</button>
       </form>
     </div>
 
