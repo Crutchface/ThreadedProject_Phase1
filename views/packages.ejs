@@ -31,10 +31,10 @@
     <p>$<%= parseFloat(package.PkgBasePrice).toFixed(2) %></p></div>
   
 
-    <div class="orderbutton"><form action="order/<%= package.PackageID %>" method="post">
+    <div class="orderbutton"><form action="order/<%= package.PackageID %>" >
       <input class="button " type="submit" value="Order This Package" />
     </form></div>
-    <div class="reviewbutton"><form action="reviewPackage/<%= package.PackageID %>" method="post">
+    <div class="reviewbutton"><form action="reviewPackage/<%= package.PackageID %>">
 
       <input class="button" type="submit" value="Review This Package" />
     </form></div>
