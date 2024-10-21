@@ -8,7 +8,7 @@
 
   <form>
 <div class="form-container">
-<form class="formbox">
+<form class="formbox"  id="form" action="/agentedit" method="post">
   
       <label for="">First Name</label>
       <input
@@ -53,13 +53,14 @@
         readonly
       /><br />
 
-      <button class = "button" type="submit" id="submit">Update user</button>
+      <button class = "button" type="submit" id="submit" >Update user</button>
     </form></div>
     <%- include('./includes/footer.ejs') %>
     <script type="text/javascript" src="/validate.js"></script>
     <script>
+      
       const form = document.getElementById("form");
-
+      console.log(form)
       // Validation and Submit
       function Submit() {
         let lastname = document.forms["form"]["lastname"].value;
