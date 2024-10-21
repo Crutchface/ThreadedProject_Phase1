@@ -1,6 +1,6 @@
 body{
-    background-color: rgb(131, 157, 233);
-   
+    background-color: rgb(193, 209, 255);
+    margin:0;
     font-family: "Afacad Flux", sans-serif;
     
     
@@ -23,6 +23,10 @@ body{
     gap: 50px;
     font-family: "Afacad Flux", sans-serif;
 
+}
+
+.header h1{
+  margin:0;
 }
 
 .navbar {
@@ -287,8 +291,9 @@ body{
   .agents-container {
     display: flex;
     flex-flow: column;
+    
     gap:10px;
-    width:800px;
+    
     padding: 10px;
     align-items: center;
     margin-left: auto;
