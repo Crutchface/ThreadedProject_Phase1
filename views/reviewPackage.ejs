@@ -4,8 +4,8 @@
     <%- include('./includes/header.ejs') %>
     <%- include('./includes/nav-bar.ejs') %>
 
-
-    <form id="form" action="/reviewSubmit" method="post">
+    <div class="form-container">
+    <form class="formbox" id="form" action="/reviewSubmit" method="post">
       <h2><%= package.PkgName %></h2>
       <p><%= package.PkgDesc %></p>
       <label for="firstName">First Name: </label>
@@ -46,8 +46,9 @@
           <option value="<%= package.PackageID %>" ><%= package.PkgName %></option>
         </select> -->
         <br>
-      <input type="submit" value="Submit your review" />
+      <input class = "button" type="submit" value="Submit your review" />
     </form>
+  </div>
 
     <%- include('./includes/footer.ejs') %>
     <script type="text/javascript" src="/validate.js"></script>
