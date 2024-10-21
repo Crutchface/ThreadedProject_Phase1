@@ -5,10 +5,12 @@
 <%- include('./includes/header.ejs') %>
 <%- include('./includes/nav-bar.ejs') %>
 
-<div class="content-container">
+
     <% packages.forEach(package => { %>
-      <h2><%= package.PkgName %></h2>
-      <h4><%= package.PkgStartDate %> - <%= package.PkgEndDate %></h4>
+  <div class="packages-container">
+      <div class="package-card"><h2><%= package.PkgName %></h2>
+      <h4>Starts: <%= package.PkgStartDate %></h4>
+      <h4>Ends: <%= package.PkgEndDate %></h4>
       <p><%= package.PkgDesc %></p>
     
       <% 
@@ -26,20 +28,18 @@
       <% } %>
    
   
- 
-
-    <p>$<%= parseFloat(package.PkgBasePrice).toFixed(2) %></p>
+    <p>$<%= parseFloat(package.PkgBasePrice).toFixed(2) %></p></div>
   
-    <form action="order/<%= package.PackageID %>" method="post">
-      <input class="button" type="submit" value="Order This Package" />
-    </form>
-    <form action="reviewPackage/<%= package.PackageID %>" method="post">
+    <div class="orderbutton"><form action="order/<%= package.PackageID %>" method="post">
+      <input class="button " type="submit" value="Order This Package" />
+    </form></div>
+    <div class="reviewbutton"><form action="reviewPackage/<%= package.PackageID %>" method="post">
       <input class="button" type="submit" value="Review This Package" />
-    </form>
-    <br />
+    </form></div>
+  </div>
     <% }) %>
 
-  </div>
+  
 
   <%- include('./includes/footer.ejs') %>
   </body>

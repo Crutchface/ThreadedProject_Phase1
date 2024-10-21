@@ -1,29 +1,24 @@
 body{
     background-color: rgb(131, 157, 233);
+   
+    font-family: "Afacad Flux", sans-serif;
     
     
 }
 
-.grid-container{
-    display:grid;
-    grid-template-areas: 
-    "header"
-    "nav"
-    "main"
-    "footer";
-    grid-template-rows: 250px 50px 1fr 50px;
-    gap: 10px;
+
+.logo{
+  float: left;
 }
 
 .header{
     display: flex;
     flex-direction: row;
-    grid-area: header;
+    
     background-color: rgb(29, 48, 106);
     align-items: center;
     color:white;
     font-size:26px;
-    align-content: center;
     justify-content: center;
     gap: 50px;
     font-family: "Afacad Flux", sans-serif;
@@ -31,29 +26,29 @@ body{
 }
 
 .navbar {
-    grid-area: nav;
+    
     overflow: hidden;
     background-color: #333;
     font-family: "Afacad Flux", sans-serif;
 
   }
   
-  .navbar a {
+.navbar a {
     float: left;
     font-size: 16px;
     color: white;
     text-align: center;
     padding: 14px 16px;
     text-decoration: none;
-  }
+}
   
-  .dropdown {
+.dropdown {
     float: left;
     overflow: hidden;
     width: 160px;
-  }
+}
   
-  .dropdown .dropbtn {
+.dropdown .dropbtn {
     font-size: 16px;  
     border: none;
     outline: none;
@@ -63,65 +58,86 @@ body{
     background-color: inherit;
     font-family: inherit;
     margin: 0;
-  }
+}
   
-  .navbar a:hover, .dropdown:hover .dropbtn {
+.navbar a:hover, .dropdown:hover .dropbtn {
     background-color: rgb(29, 48, 106);
     
-  }
+}
   
-  .dropdown-content {
+.dropdown-content {
     display: none;
     position: absolute;
     background-color: #e1e1e1;
     
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
     z-index: 1;
-  }
+}
   
-  .dropdown-content input {
-    font-family: "Afacad Flux", sans-serif;
-    background-color: #e1e1e1;
-    border: none;
-    float: none;
-    color: black;
-    padding: 12px 16px;
-    width: 160px;
-    text-decoration: none;
-    display: block;
-    text-align: center;
-  }
+.dropdown-content input {
+  font-family: "Afacad Flux", sans-serif;
+  background-color: #e1e1e1;
+  border: none;
+  float: none;
+  color: black;
+  padding: 12px 16px;
+  width: 160px;
+  text-decoration: none;
+  display: block;
+  text-align: center;
+}
   
-  .dropdown-content input:hover {
-    background-color: rgb(131, 157, 233);
-    cursor: pointer;
-  }
+.dropdown-content input:hover {
+  background-color: rgb(131, 157, 233);
+  cursor: pointer;
+}
   
-  .dropdown:hover .dropdown-content {
-    display: block;
-  }
+.dropdown:hover .dropdown-content {
+  display: block;
+}
 
-  
-  
-  .main-content {
-    grid-area: main;
-    font-family: "Afacad Flux", sans-serif;
-  }
 
-  .welcome {
-    display: flex;
-    align-items: center;
-    justify-content: center;
+.welcome {
+  display: flex;
+  align-items: center;
+  justify-content: center;
     
 
-  }
-     
+}
 
+
+.footertext{
+  display: flex;
+   
+  justify-content: center;
+    
+}
   
+.footertext>p{
+  color: white;
+  font-size: 15px;
+}
 
+
+
+.button {
+  background-color: rgb(29, 48, 106);
+  border-radius: 10px;
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
   
+  
+  font-size: 16px;
+}
 
-  * {box-sizing:border-box}
+.button:hover{
+  cursor: pointer;
+  background-color: rgb(22, 36, 78);
+}
+
 
 /* Slideshow container */
 .slideshow-container {
@@ -167,16 +183,12 @@ body{
   color: #f2f2f2;
   font-size: 15px;
   padding: 8px 12px;
-  position: absolute;
+  
   bottom: 8px;
-  width: 100%;
+  
   text-align: center;
   
-  
-  background-color: rgba(0, 0, 0, 0.226);
-  
 }
-
 
 
 /* The dots/bullets/indicators */
@@ -195,48 +207,99 @@ body{
   background-color: #717171;
 }
 
-/* Fading animation */
-.fade {
-  animation-name: fade;
-  animation-duration: 1.5s;
-}
-
-@keyframes fade {
-  from {opacity: .4}
-  to {opacity: 1}
-}
-
-
-.footertext{
-    display: flex;
-    grid-area: footer; 
-    justify-content: center;
-    
-}
+.agent-grid {
+  display: grid;
+  grid-template-columns: 200px auto;
+  gap: 10px;
   
-.footertext>p{
-    color: white;
-    font-size: 15px;
 }
 
-.content-container{
+.agent-name {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(0,0,0,0.25);
+  border-radius: 20px;
+}
+
+.agent-name p{
+  color: white;
+}
+
+.agent-grid button, .agent-link {
+  width:100px;
+}
+
+.pagenotfound{
   font-family: "Afacad Flux", sans-serif;
-
+  color: white;
+  font-size: 100px;
 }
 
-  .button {
-    background-color: rgb(29, 48, 106);
-            border-radius: 10px;
-            border: none;
-            color: white;
-            padding: 15px 32px;
-            text-align: center;
-            text-decoration: none;
-            display: inline-block;
-            font-size: 16px;
-}
+.package-card {
+  display: flex;
+  grid-area:package-card;
+  flex-flow: column;
+  background-color: rgba(0,0,0,0.25);
+  
+  
+  padding: 5px;
+  align-items: center;
+  border-radius: 20px;
+  color: white;
+  }
 
-.button:hover{
-    cursor: pointer;
-}
+  .packages-container {
+    display:grid;
+    grid-template-columns: auto auto;
+    grid-template-areas: 
+    "package-card package-card"
+    "orderbutton reviewbutton";
+    padding: 10px;
+    
+    gap: 10px;
+    justify-items: center;
+    justify-content: center;
 
+  }
+
+  .orderbutton {
+    grid-area: orderbutton;
+  }
+
+  .reviewbutton {
+    grid-area: reviewbutton;    
+  }
+
+  .city-card {
+    background-color: rgba(0,0,0,0.25);
+    border-radius: 20px;
+    padding-left:20px;
+    padding-right:20px;
+    
+    
+    padding-bottom:10px;
+  }
+  .city-card h1{
+    color: white;
+  }
+
+  .agents-container {
+    display: flex;
+    flex-flow: column;
+    gap:10px;
+    width:800px;
+    padding: 10px;
+    align-items: center;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .edit-container {
+    margin-left:auto;
+    margin-right: auto;
+    display: flex;
+    flex-flow:column;
+    justify-content: center;
+    align-items: center;
+  }

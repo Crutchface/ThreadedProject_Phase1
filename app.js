@@ -95,14 +95,14 @@ app.get("/agents", async (req, res) => {
   
   const agents = await Agents.findAll();
   const agency = await Agency.findAll();
-  res.render("agents", { agents: agents, agency: agency, pageTitle: "Contact one of our agents"  });
+  res.render("agents", { agents: agents, agency: agency, pageTitle: "Agents"  });
 });
 
 // Endpoint for editing all agents
 app.get("/editagents", async (req, res) => {
   const agents = await Agents.findAll();
   console.log(agents);
-  res.render("editagents", { agents: agents,  pageTitle: "Edit existing agent details"  });
+  res.render("editagents", { agents: agents,  pageTitle: "Edit Agents"  });
 });
 
 // Ednpoint for editing specific agent
@@ -110,7 +110,7 @@ app.get("/agentedit/:id", async (req, res) => {
   // use find by pk to find by primary key
   // takes the id to search as a a parameter
   const agent = await Agents.findByPk(req.params.id);
-  res.render("agentedit", { agent , pageTitle: "Agent Editing" });
+  res.render("agentedit", { agent , pageTitle: "Edit Agent" });
 });
 
 //  Post for the update
@@ -143,7 +143,7 @@ app.get("/packages", async (req, res) => {
   const packages = await Packages.findAll();
   console.log(packages)
   const reviews = await Reviews.findAll();
-  res.render("packages", { packages: packages, reviews: reviews, pageTitle: "Please view all of our great packages!"  });
+  res.render("packages", { packages: packages, reviews: reviews, pageTitle: "Packages"  });
 });
 
 /**=======================
@@ -161,7 +161,7 @@ app.post("/order/:id", async (req, res) => {
     packageOrder: packageOrder,
     agents: agents,
     tripTypes: tripTypes,
-    pageTitle: "Place an Order"
+    pageTitle: "Place Order"
   });
 });
 
@@ -248,7 +248,7 @@ app.post("/packageOrder", async (req, res) => {
 
 app.post("/reviewPackage/:id", async (req, res) => {
   const package = await Packages.findByPk(req.params.id);
-  res.render("reviewPackage", { package: package, pageTitle: "Please review any packages you have booked!"  });
+  res.render("reviewPackage", { package: package, pageTitle: "Review Packages"  });
 });
 app.post("/reviewSubmit", async (req, res) => {
     const {reviewFirstName,reviewLastName,reviewDescript,reviewRating,packageId}= req.body
@@ -259,7 +259,7 @@ app.post("/reviewSubmit", async (req, res) => {
 
 app.get("/deletereview", async (req, res) => {
   const reviews = await Reviews.findAll();
-  res.render("deletereview", { reviews: reviews, pageTitle: "Delete any problematic reviews"  });
+  res.render("deletereview", { reviews: reviews, pageTitle: "Delete Review"  });
 });
 
 app.get("/deletereview/:id", async (req, res)=>{
@@ -272,10 +272,10 @@ app.get("/deletereview/:id", async (req, res)=>{
 /**=======================
  * !      404 Endpoint
  *========================**/
-// app.use((req, res)=>{
-//     // res.status(404).send("<h1>Error Page Not Found</h1>");
-//     res.render('404', {pageTitle : '404 Not Found'});
-// });
+app.use((req, res)=>{
+    // res.status(404).send("<h1>Error Page Not Found</h1>");
+    res.render('404', {pageTitle : '404 Not Found'});
+});
 
 // Listens to port==============================================
 
