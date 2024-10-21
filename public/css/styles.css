@@ -303,3 +303,29 @@ body{
     justify-content: center;
     align-items: center;
   }
+
+  .formbox {
+    border-radius: 20px;
+    background-color:rgb(227, 227, 227);
+    padding: 20px;
+    width: 500px;
+}
+
+input[type=text], input[type=email], input[type=number], select, textarea {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    font-family: "Afacad Flux", sans-serif;
+    
+}
+
+.form-container {
+  display:flex;
+  justify-content: center;
+  padding:10px;
+}
+  
