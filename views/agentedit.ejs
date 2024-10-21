@@ -4,7 +4,6 @@
   <%- include('./includes/header.ejs') %>
   <%- include('./includes/nav-bar.ejs') %>
   <div class="form-container">
-    <form class="formbox" id="form">
       <label for="">First Name</label>
       <input type="text" name="firstname" value="<%= agent.AgtFirstName %>" />
       <br />
@@ -30,7 +29,6 @@
       </select><br />
       <label for="">Location ID</label>
       <input type="text" name="location" value="<%= agent.AgencyId %>" readonly /><br />
-
       <button class="button" type="submit" id="submit">Update user</button>
     </form>
   </div>
