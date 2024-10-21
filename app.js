@@ -1,10 +1,11 @@
-// TODO : 
-//        
-//        Make database logic for agents
-//        Make dates display as red if too old
-//        If Time : Move booking number feature to ext 
-//      
+// Threaded Project - Chris Ferguson, Daryl Wang, Kazi Fattah, Taiwo AdeJoro
+// Front End : Kazi & Taiwo
+// Back End : Chris & Daryl
 
+
+// ======================================================
+// Randomly Generates our booking Number
+// ======================================================
 function makeBookingNo(length) {
   let result = "";
   const characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
@@ -15,7 +16,7 @@ function makeBookingNo(length) {
     counter += 1;
   }
   return result;
-}
+};
 
 // ======================================================
 // Calls in our npm modules
@@ -23,8 +24,6 @@ function makeBookingNo(length) {
 const express = require("express");
 const sequelize = require("./utils/database");
 const path = require("path");
-// Loads in our express-validator module
-const { body, validationResult } = require("express-validator");
 
 // defines our
 const app = express();
@@ -54,6 +53,7 @@ const Reviews = require("./models/reviews");
 // Sets our Root Directory
 // =======================================================
 const rootDir = path.dirname(require.main.filename);
+
 
 // =======================================================
 // Declares our static folders
@@ -90,7 +90,7 @@ app.get("/", async (req,res)=>{
  * !      Agents Endpoints
  *========================**/
 
-// Endpoint for agents w/ agency information
+// Endpoint for displaying agents w/ agency information
 app.get("/agents", async (req, res) => {
   
   const agents = await Agents.findAll();
@@ -113,19 +113,15 @@ app.get("/agentedit/:id", async (req, res) => {
   res.render("agentedit", { agent , pageTitle: "Edit Agent" });
 });
 
-//  Post for the update
+//  Post for the update of an agent
 app.post("/agentedit", async (req, res) => {
-  // const {firstname, lastname, email, phone, city,postal,message } = req.body;
-  console.log(req.body);
   const {AgentId, AgtFirstName, AgtMiddleInitial, AgtLastName, AgtBusPhone, AgtEmail, AgtPosition, AgencyID}=req.body;
   await Agents.update(
     { AgtFirstName, AgtMiddleInitial, AgtLastName, AgtBusPhone, AgtEmail, AgtPosition, AgencyID },
     {
       where: { AgentId: AgentId },
     }
-    
   );
-
   res.redirect("/agents");
 });
 
@@ -141,22 +137,23 @@ app.get("/agentdelete/:id", async (req, res) => {
 
 app.get("/packages", async (req, res) => {
   const packages = await Packages.findAll();
-  console.log(packages)
   const reviews = await Reviews.findAll();
-  res.render("packages", { packages: packages, reviews: reviews, pageTitle: "Packages"  });
+
+   // Creates a current Date for turning older dates red, or not showing previously completed packages
+  const currentDate = new Date();
+  res.render("packages", { packages: packages, reviews: reviews, pageTitle: "Packages", currentDate});
+
 });
 
 /**=======================
  * !      Orders Endpoints
  *========================**/
 
-// Post event to pass package information to order form
-app.post("/order/:id", async (req, res) => {
+// Get event to pass package information to order form
+app.get("/order/:id", async (req, res) => {
   const packageOrder = await Packages.findByPk(req.params.id);
-  // console.log(packageOrder)
   const agents = await Agents.findAll();
   const tripTypes = await TripTypes.findAll();
-  // console.log(tripTypes)
   res.render("orders", {
     packageOrder: packageOrder,
     agents: agents,
@@ -164,9 +161,8 @@ app.post("/order/:id", async (req, res) => {
     pageTitle: "Place Order"
   });
 });
-
+// Post event for submission of order
 app.post("/packageOrder", async (req, res) => {
-  // ADD TO DATABASE HERE
   const {
     CustFirstName,
     CustLastName,
@@ -208,7 +204,7 @@ app.post("/packageOrder", async (req, res) => {
       // Select only the CustomerId column
       attributes: ["CustomerId"], // Select only the CustomerId column
     });
-
+    // Makes the customer ID Number
     if (lastRecord.length > 0) {
      
       nextCustomerId = lastRecord[0].CustomerId;
@@ -217,8 +213,9 @@ app.post("/packageOrder", async (req, res) => {
     console.error("Error processing order:", error);
     res.status(500).json({ error: "Internal Server Error" }); // Handle error gracefully
   }
-  console.log(req.body);
+  // console.log(req.body);
   const BookingDate = new Date();
+  // makes a random 6 character booking number
   const BookingNo = makeBookingNo(6);
   const CustomerId = nextCustomerId;
 
@@ -246,17 +243,20 @@ app.post("/packageOrder", async (req, res) => {
  * !      Review Endpoints
  *========================**/
 
-app.post("/reviewPackage/:id", async (req, res) => {
+app.get("/reviewPackage/:id", async (req, res) => {
+   
   const package = await Packages.findByPk(req.params.id);
   res.render("reviewPackage", { package: package, pageTitle: "Review Packages"  });
 });
+
+// Post Event for submitted reviews
 app.post("/reviewSubmit", async (req, res) => {
-    const {reviewFirstName,reviewLastName,reviewDescript,reviewRating,packageId}= req.body
+    const {reviewFirstName,reviewLastName,reviewDescript,reviewRating,packageId}= req.body;
     await Reviews.create({reviewFirstName,reviewLastName,reviewDescript,reviewRating,packageId})
-    console.log(req.body);
     res.redirect("packages");
 });
 
+// Delete Review Endpoints
 app.get("/deletereview", async (req, res) => {
   const reviews = await Reviews.findAll();
   res.render("deletereview", { reviews: reviews, pageTitle: "Delete Review"  });
@@ -266,8 +266,6 @@ app.get("/deletereview/:id", async (req, res)=>{
   await Reviews.destroy({ where: { ReviewId: req.params.id } });
   res.redirect("/deletereview")
 });
-
-
 
 /**=======================
  * !      404 Endpoint

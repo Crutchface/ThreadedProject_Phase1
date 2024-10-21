@@ -3,12 +3,10 @@
 
     <%- include('./includes/header.ejs') %>
     <%- include('./includes/nav-bar.ejs') %>
-
-
     <div>
       <form class="packageOrder" id="form" action="/packageOrder" method="post">
         <h1 name="<% packageOrder.PackageID %>"><%= packageOrder.PkgName %></h1>
-        <div class="inputDiv">
+          <div class="inputDiv">
           <label for="CustFirstName">First Name: </label>
           <input type="text" name="CustFirstName" id="CustFirstName" />
         </div>
@@ -107,14 +105,15 @@
         <br/>
         <br/>
         <label for="PackageId">Current Package</label>
-        <select name="PackageId" id="PackageId">
-          <option value="<%= packageOrder.PackageID %>"><%= packageOrder.PkgName %></option>
+        <select name="PackageId" id="PackageId" disabled >
+          <option value="<%= packageOrder.PackageID %>" ><%= packageOrder.PkgName %></option>
         </select>
         <br/>
         <br/>
         <button class="inputDiv" type="submit">Place Order</button>
       </form>
     </div>
+
     <%- include('./includes/footer.ejs') %>
     <script type="text/javascript" src="/validate.js"></script>
     <script>

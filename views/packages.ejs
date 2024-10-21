@@ -24,16 +24,18 @@
       <% if (randomReview) { %>
         <p style="font-size: 16px; color: red;"><%= randomReview.reviewFirstName %> says <%= randomReview.reviewDescript %></p>
       <% } else { %>
-        <p>No reviews available.</p>
+       
       <% } %>
    
   
     <p>$<%= parseFloat(package.PkgBasePrice).toFixed(2) %></p></div>
   
+
     <div class="orderbutton"><form action="order/<%= package.PackageID %>" method="post">
       <input class="button " type="submit" value="Order This Package" />
     </form></div>
     <div class="reviewbutton"><form action="reviewPackage/<%= package.PackageID %>" method="post">
+
       <input class="button" type="submit" value="Review This Package" />
     </form></div>
   </div>
