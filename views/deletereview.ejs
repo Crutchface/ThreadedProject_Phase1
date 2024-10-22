@@ -5,21 +5,22 @@
     <%- include('./includes/header.ejs') %> <%-
     include('./includes/nav-bar.ejs') %>
 
-    <div class="packages-container">
-      <div class="package-card">
+    <div class="edit-container">
+      
         <h1>Delete Reviews</h1>
+        <div class="review-grid">
         <% reviews.forEach(review => { %>
-        <li>
+        <div class="review"><p>
           <%= review.reviewFirstName %> <%= review.reviewLastName %>'s Review :
           <%= review.reviewDescript %> Rating : <%= review.reviewRating %>
-          Package Information : <%= review.packageId %>
-          <a href="/deletereview/<%= review.ReviewId %>" class="button"
-            >Delete</a
-          >
-        </li>
-        <br />
+          Package Information : <%= review.packageId %></p></div>
+          <a href="/deletereview/<%= review.ReviewId %>" 
+            ><button class="button">Delete</button></a>
+        
+        
         <% }) %>
       </div>
     </div>
+    <%- include('./includes/footer.ejs') %>
   </body>
 </html>

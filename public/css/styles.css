@@ -333,4 +333,26 @@ input[type=text], input[type=email], input[type=number], select, textarea {
   justify-content: center;
   padding:10px;
 }
+
+.review-grid {
+  display: grid;
+  grid-template-columns: auto 100px;
+  gap: 10px;
+  align-items: center;
+}
+  
+
+.review {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  justify-content: center;
+  background-color: rgba(0,0,0,0.25);
+  border-radius: 20px;
+  padding: 10px
+}
+
+.review p{
+  color: white;
+}
   
