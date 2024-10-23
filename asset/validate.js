@@ -123,7 +123,7 @@ const validatePostalCode = (postalCode) => {
     return false;
   } else {
     if (!POSTALCODE_REGEX.test(postalCode)) {
-      alert("invalid province");
+      alert("invalid postal code");
       return false;
     }
   }

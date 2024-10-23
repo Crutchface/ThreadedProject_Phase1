@@ -14,13 +14,44 @@
           <%= review.reviewFirstName %> <%= review.reviewLastName %>'s Review :
           <%= review.reviewDescript %> Rating : <%= review.reviewRating %>
           Package Information : <%= review.packageId %></p></div>
-          <a href="/deletereview/<%= review.ReviewId %>" 
-            ><button class="button">Delete</button></a>
-        
+          <!-- <a href="/deletereview/<%= review.ReviewId %>" 
+            ><button class="button">Delete</button></a> -->
+            <a onclick="DeleteData({id:'<%= review.ReviewId %>',name:'<%= review.reviewFirstName %>'})"><button class="button">Delete</button></a>
         
         <% }) %>
       </div>
     </div>
+    <dialog id="confirm_Dialog">
+      <p id="confirm_content">Are you sure want to delete this review?</p>
+      <button id="ok" onclick="OK()">OK</button>
+      <button id="cancel" onclick="Cancel()">Cancel</button>
+  </dialog>
+  <script>
+    let currentId = 0;
+    const confirmText = document.getElementById("confirm_content");
+    const confirmDialog = document.getElementById("confirm_Dialog");
+
+    function DeleteData(review){
+        
+        confirmText.innerText = `Are you sure want to delete ${review.name}'s review?`;
+        currentId = review.id;
+        confirmDialog.showModal();
+    }
+
+    function OK(){
+        // console.log(currentId)
+        const getDelete = document.createElement('a');
+        getDelete.href = `/deletereview/${currentId}`;
+        getDelete.click();
+        getDelete.remove();
+    }
+
+    function Cancel(){
+        confirmDialog.close();
+    }
+</script>
     <%- include('./includes/footer.ejs') %>
+ 
   </body>
+
 </html>
