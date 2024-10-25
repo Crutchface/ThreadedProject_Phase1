@@ -3,8 +3,9 @@
 //     `ReviewId` INT NOT NULL AUTO_INCREMENT,
 //     `reviewFirstName` VARCHAR(45) NOT NULL,
 //     `reviewLastName` VARCHAR(45) NOT NULL,
-//     `reviewDesc` VARCHAR(240) NOT NULL,
+//     `reviewDescript` VARCHAR(240) NOT NULL,
 //     `reviewRating` INT NOT NULL,
+//     `packageId` INT NOT NULL,
 //     PRIMARY KEY (`ReviewId`),
 //     UNIQUE INDEX `idnew_table_UNIQUE` (`ReviewId` ASC) VISIBLE);
 
